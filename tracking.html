@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Track a Shipray shipment by AWB or order ID and understand every delivery milestone.">
+  <meta name="theme-color" content="#0868ef">
+  <title>Track Your Shipment — Shipray Logistics</title>
+  <link rel="icon" type="image/svg+xml" href="assets/shipray-mark.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body data-page="tracking">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-site-header></header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container page-hero-grid">
+        <div class="reveal">
+          <div class="eyebrow light">Unified shipment visibility</div>
+          <h1 class="display-title">Know where every shipment <span>stands.</span></h1>
+          <p class="lead">Use an AWB or order ID to view the latest shipment milestone in one clear timeline—without navigating multiple courier portals.</p>
+        </div>
+        <div class="hero-panel reveal delay-1">
+          <h3>Tracking that answers the next question</h3>
+          <div class="hero-panel-list">
+            <div><span><i data-lucide="scan-line"></i></span><p><b>One search</b><small>AWB or order reference</small></p></div>
+            <div><span><i data-lucide="list-checks"></i></span><p><b>Readable milestones</b><small>Pickup through final delivery</small></p></div>
+            <div><span><i data-lucide="bell-ring"></i></span><p><b>Exception awareness</b><small>Know when a shipment needs action</small></p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface">
+      <div class="container split-grid">
+        <div class="reveal">
+          <div class="eyebrow">Track your order</div>
+          <h2 class="section-title">Enter your shipment <span>reference.</span></h2>
+          <p class="lead">Your AWB is usually printed on the shipping label and shared in the booking confirmation.</p>
+          <ul class="check-list">
+            <li>Use letters, numbers or hyphens</li>
+            <li>Search is private to your entered reference</li>
+            <li>Latest available network milestone is displayed</li>
+          </ul>
+        </div>
+        <div class="tracker-shell reveal delay-1">
+          <form id="trackingForm" novalidate>
+            <div class="tracking-search">
+              <label class="field"><span>AWB or order ID</span><input name="awb" placeholder="For example: SRX12589432" autocomplete="off"><small class="field-error"></small></label>
+              <button class="btn btn-primary btn-lg" type="submit"><i data-lucide="search"></i> Track shipment</button>
+            </div>
+          </form>
+
+          <div class="tracking-result" id="trackingResult" hidden>
+            <div class="status-head">
+              <div><small>Shipment reference</small><h3 data-awb>SRX12589432</h3></div>
+              <span class="status-badge">In transit</span>
+            </div>
+            <div class="timeline">
+              <div class="timeline-item"><span class="timeline-dot"></span><b>Shipment picked up</b><p>The parcel was collected from the origin location.</p><time>Today · 10:30 AM</time></div>
+              <div class="timeline-item"><span class="timeline-dot"></span><b>Origin hub processed</b><p>Shipment scanning and route assignment completed.</p><time>Today · 2:15 PM</time></div>
+              <div class="timeline-item"><span class="timeline-dot"></span><b>Moving to destination hub</b><p>The parcel is travelling on the assigned network route.</p><time>Latest update · 5:40 PM</time></div>
+              <div class="timeline-item pending"><span class="timeline-dot"></span><b>Out for delivery</b><p>This milestone will appear after destination processing.</p></div>
+              <div class="timeline-item pending"><span class="timeline-dot"></span><b>Delivered</b><p>Final delivery confirmation will be recorded here.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <div class="eyebrow center">Understand the journey</div>
+          <h2 class="section-title">What each shipment status <span>really means.</span></h2>
+        </div>
+        <div class="card-grid">
+          <article class="card reveal"><span class="icon-box"><i data-lucide="package-check"></i></span><h3>Booked</h3><p>The shipment record and label have been created. Pickup may still be pending.</p></article>
+          <article class="card reveal delay-1"><span class="icon-box amber"><i data-lucide="hand"></i></span><h3>Picked up</h3><p>The courier has collected the parcel and brought it into the operating network.</p></article>
+          <article class="card reveal delay-2"><span class="icon-box"><i data-lucide="route"></i></span><h3>In transit</h3><p>The shipment is moving between hubs or travelling toward the destination city.</p></article>
+          <article class="card reveal"><span class="icon-box green"><i data-lucide="bike"></i></span><h3>Out for delivery</h3><p>A delivery associate has the parcel and is attempting the final doorstep delivery.</p></article>
+          <article class="card reveal delay-1"><span class="icon-box green"><i data-lucide="circle-check-big"></i></span><h3>Delivered</h3><p>The courier network has recorded successful handover at the destination.</p></article>
+          <article class="card reveal delay-2"><span class="icon-box amber"><i data-lucide="triangle-alert"></i></span><h3>Exception</h3><p>An address, availability, weather or operational issue may need attention.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface">
+      <div class="container split-grid">
+        <div class="visual-panel light reveal">
+          <div class="visual-stack">
+            <div class="visual-row"><span><i data-lucide="message-square-text"></i></span><div><b>Pickup confirmation</b><small>Know when the parcel enters the network</small></div><strong>SMS</strong></div>
+            <div class="visual-row"><span><i data-lucide="mail-check"></i></span><div><b>Transit milestone</b><small>Share relevant progress with customers</small></div><strong>Email</strong></div>
+            <div class="visual-row"><span><i data-lucide="message-circle-more"></i></span><div><b>Out-for-delivery update</b><small>Set expectations before the attempt</small></div><strong>WhatsApp</strong></div>
+          </div>
+        </div>
+        <div class="reveal delay-1">
+          <div class="eyebrow">Customer communication</div>
+          <h2 class="section-title">Turn tracking into a better <span>delivery experience.</span></h2>
+          <p class="lead">Clear, timely status communication can reduce “Where is my order?” requests and help customers prepare for delivery.</p>
+          <ul class="check-list">
+            <li>Use recognisable shipment references in every message</li>
+            <li>Communicate milestones instead of internal courier codes</li>
+            <li>Highlight action only when the customer needs to respond</li>
+            <li>Keep support contact details easy to find</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-grid">
+        <div class="section-heading reveal">
+          <div class="eyebrow">Tracking questions</div>
+          <h2 class="section-title">Need help interpreting a <span>status?</span></h2>
+          <p class="lead">Common answers for AWB search, delayed scans and delivery exceptions.</p>
+        </div>
+        <div class="faq-list reveal delay-1">
+          <article class="faq-item"><button type="button" data-faq-button aria-expanded="false"><span>Where can I find my AWB number?</span><i data-lucide="plus"></i></button><div class="faq-answer"><p>Look for the tracking or airway bill number on your booking confirmation, invoice or courier label.</p></div></article>
+          <article class="faq-item"><button type="button" data-faq-button aria-expanded="false"><span>Why has the status not changed today?</span><i data-lucide="plus"></i></button><div class="faq-answer"><p>Some milestones appear only after the next hub scan. Long-distance movement can create a gap between visible updates.</p></div></article>
+          <article class="faq-item"><button type="button" data-faq-button aria-expanded="false"><span>What should I do after a delivery exception?</span><i data-lucide="plus"></i></button><div class="faq-answer"><p>Confirm the delivery address and phone availability, then contact Shipray support with the AWB and exception details.</p></div></article>
+          <article class="faq-item"><button type="button" data-faq-button aria-expanded="false"><span>Can I track shipments from different couriers?</span><i data-lucide="plus"></i></button><div class="faq-answer"><p>Yes. Shipray is designed to present milestones across multiple connected courier networks in a consistent format.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div><h2>A shipment needs attention?</h2><p>Share the AWB and latest status with our support team so we can review the next action.</p></div>
+          <a class="btn btn-light btn-lg" href="contact.html">Contact shipment support <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer data-site-footer></footer>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

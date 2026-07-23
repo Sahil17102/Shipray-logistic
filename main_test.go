@@ -41,6 +41,13 @@ func TestFrontendServer(t *testing.T) {
 			bodyIncludes: []string{"<svg"},
 		},
 		{
+			name:         "services page",
+			method:       http.MethodGet,
+			target:       "/services.html",
+			status:       http.StatusOK,
+			bodyIncludes: []string{"Services for every shipment"},
+		},
+		{
 			name:   "runtime config",
 			method: http.MethodGet,
 			target: "/config.js",

@@ -2,270 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shipray Logistics is India's smart courier aggregator. Compare courier rates, book shipments and track deliveries from one simple platform.">
-  <meta name="theme-color" content="#0b63f6">
-  <title>Shipray Logistics — Ship smarter, deliver faster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shipray Logistics helps Indian businesses compare courier partners, ship nationwide and track every delivery from one platform.">
+  <meta name="theme-color" content="#0868ef">
+  <title>Shipray Logistics — Smarter shipping for every business</title>
   <link rel="icon" type="image/svg+xml" href="assets/shipray-mark.svg">
-  <style>
-    body.app-ready{background:#fff}
-    html{background:#061b40}body.app-loading{margin:0;overflow:hidden;background:#061b40}.site-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;background:radial-gradient(circle at 50% 42%,#0d58c6 0,#082e70 34%,#061b40 72%);opacity:1;visibility:visible;transition:opacity .5s ease,visibility .5s ease}.site-loader:before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.16) 1px,transparent 1px);background-size:20px 20px;mask-image:radial-gradient(circle at center,#000,transparent 66%);opacity:.38}.site-loader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}.loader-content{position:relative;text-align:center;color:#fff}.loader-logo{width:96px;height:96px;margin:0 auto 19px;border-radius:28px;background:linear-gradient(145deg,#1680ff,#0750d1);display:grid;place-items:center;box-shadow:0 0 0 12px rgba(255,255,255,.045),0 0 55px rgba(49,143,255,.68);animation:shipray-pulse 1.45s ease-in-out infinite}.loader-logo svg{width:45px;height:45px;filter:drop-shadow(0 4px 7px rgba(0,25,80,.28))}.loader-name{font:800 28px/1.05 Arial,sans-serif;letter-spacing:-1px}.loader-name small{display:block;font:700 7px/1.2 Arial,sans-serif;letter-spacing:4px;color:#a9caff;margin-top:8px}.loader-progress{width:128px;height:3px;margin:24px auto 0;border-radius:10px;background:rgba(255,255,255,.14);overflow:hidden}.loader-progress i{display:block;width:42%;height:100%;border-radius:inherit;background:#fff;box-shadow:0 0 12px #7cb4ff;animation:shipray-line 1.1s ease-in-out infinite}.loader-text{display:block;margin-top:11px;font:600 9px Arial,sans-serif;letter-spacing:1.2px;color:#a8bdd9}@keyframes shipray-pulse{0%,100%{transform:scale(.88);box-shadow:0 0 0 8px rgba(255,255,255,.035),0 0 34px rgba(49,143,255,.46)}50%{transform:scale(1.08);box-shadow:0 0 0 16px rgba(255,255,255,.055),0 0 72px rgba(49,143,255,.78)}}@keyframes shipray-line{0%{transform:translateX(-115%)}50%{transform:translateX(70%)}100%{transform:translateX(245%)}}@media(max-width:480px){.loader-logo{width:82px;height:82px;border-radius:24px}.loader-logo svg{width:38px}.loader-name{font-size:24px}}@media(prefers-reduced-motion:reduce){.loader-logo{animation:none}.loader-progress i{animation:none;width:100%}}
-    .loader-logo.loader-brand-logo{width:240px;height:auto;margin-bottom:22px;border-radius:0;background:transparent;box-shadow:none;animation:shipray-brand-pulse 1.5s ease-in-out infinite}.loader-brand-logo img{display:block;width:100%;height:auto}@keyframes shipray-brand-pulse{0%,100%{transform:scale(.9);filter:drop-shadow(0 0 14px rgba(61,151,255,.32))}50%{transform:scale(1.08);filter:drop-shadow(0 0 32px rgba(61,151,255,.78))}}@media(max-width:480px){.loader-logo.loader-brand-logo{width:205px}}@media(prefers-reduced-motion:reduce){.loader-logo.loader-brand-logo{animation:none}}
-  </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config={theme:{extend:{colors:{brand:'#0b63f6',navy:'#0a1f44'},fontFamily:{sans:['DM Sans','sans-serif'],display:['Manrope','sans-serif']}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
 </head>
-<body class="app-loading bg-white text-slate-900 antialiased">
-  <div id="siteLoader" class="site-loader" role="status" aria-live="polite" aria-label="Loading Shipray Logistics">
-    <div class="loader-content">
-      <div class="loader-logo loader-brand-logo" aria-hidden="true"><img src="assets/shipray-logo-light.svg" alt=""></div>
-      <div class="loader-progress" aria-hidden="true"><i></i></div>
-      <span class="loader-text">MOVING YOUR BUSINESS FORWARD</span>
-    </div>
-  </div>
-  <noscript><style>#siteLoader{display:none}body.app-loading{overflow:auto;background:#fff}</style></noscript>
+<body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
-
-  <div class="announcement">
-    <span><i data-lucide="sparkles"></i> Now shipping to 29,000+ serviceable pin codes</span>
-    <a href="#quote">Check your rate <i data-lucide="arrow-up-right"></i></a>
-  </div>
-
-  <header id="header" class="site-header">
-    <nav class="container nav-wrap" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Shipray home">
-        <img class="brand-logo" src="assets/shipray-logo.svg" alt="Shipray Logistics Pvt. Ltd." width="330" height="92">
-      </a>
-      <div class="desktop-nav">
-        <a class="active" href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#partners">Partners</a>
-        <a href="#tracking">Tracking</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <div class="nav-actions">
-        <button class="login-link nav-login" type="button">Login</button>
-        <button class="register-link open-booking" type="button">Register</button>
-        <button class="btn btn-primary open-booking" type="button">Book shipment <i data-lucide="arrow-up-right"></i></button>
-        <button id="menuBtn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
-      </div>
-    </nav>
-    <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
-      <a href="#home">Home</a><a href="#services">Services</a><a href="#partners">Partners</a>
-      <a href="#tracking">Tracking</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a>
-      <button class="mobile-login nav-login" type="button">Login to dashboard</button>
-      <button class="btn btn-primary open-booking" type="button">Book shipment</button>
-    </div>
-  </header>
+  <header data-site-header></header>
 
   <main id="main">
-    <section id="home" class="hero section-pad">
+    <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <div class="eyebrow"><span></span> Logistics that moves at your speed</div>
-          <h1>Ship smarter.<br><span>Deliver everywhere.</span></h1>
-          <p>Compare India’s leading courier partners, book at the best rate and manage every shipment from one powerful platform.</p>
+          <div class="eyebrow">Logistics that moves at your speed</div>
+          <h1 class="display-title">Ship smarter.<br><span>Deliver everywhere.</span></h1>
+          <p class="lead">Compare leading courier partners, book the right service and follow every shipment from pickup to doorstep—all through one clear platform.</p>
           <div class="hero-actions">
-            <button class="btn btn-primary btn-lg open-booking" type="button">Start shipping free <i data-lucide="arrow-right"></i></button>
-            <a class="text-action" href="#tracking"><span><i data-lucide="play"></i></span> Track a shipment</a>
+            <a class="btn btn-primary btn-lg" href="pricing.html">Check shipping rates <i data-lucide="arrow-right"></i></a>
+            <a class="btn btn-outline btn-lg" href="tracking.html"><i data-lucide="map-pin"></i> Track a shipment</a>
           </div>
           <div class="hero-proof">
-            <div class="avatars" aria-hidden="true"><span>AK</span><span>RM</span><span>NS</span><span>+</span></div>
-            <div><strong>4.9/5 <span class="stars">★★★★★</span></strong><small>Loved by 25,000+ businesses</small></div>
+            <div class="proof-icons" aria-hidden="true"><span>SR</span><span>BD</span><span>XB</span></div>
+            <div><strong>One platform, 100+ courier options</strong>Built for D2C, ecommerce, SMEs and enterprises.</div>
           </div>
         </div>
 
-        <div id="quote" class="hero-quote-wrap reveal delay-1">
-          <div class="quote-accent accent-one"></div><div class="quote-accent accent-two"></div>
-          <form id="heroQuoteForm" class="hero-quote-card" novalidate>
-            <div class="quote-card-head">
-              <div><span class="quote-icon"><i data-lucide="calculator"></i></span><div><small>Instant estimate</small><h2>Check shipping rates</h2></div></div>
-              <span class="free-badge"><i data-lucide="sparkles"></i> Free</span>
-            </div>
-            <div class="shipping-tabs" aria-label="Shipping type">
-              <button class="active" type="button" data-shipping="domestic"><i data-lucide="truck"></i> Domestic</button>
-              <button type="button" data-shipping="international"><i data-lucide="plane"></i> International</button>
-            </div>
-            <div class="quote-route-fields">
-              <label><span>Pickup pincode</span><div class="quote-input"><i data-lucide="circle-dot"></i><input id="heroPickup" inputmode="numeric" maxlength="6" value="380009" aria-label="Pickup pincode"></div><small class="error"></small></label>
-              <button id="swapPincodes" class="swap-pincodes" type="button" aria-label="Swap pickup and delivery pin codes"><i data-lucide="arrow-left-right"></i></button>
-              <label><span>Delivery pincode</span><div class="quote-input"><i data-lucide="map-pin"></i><input id="heroDelivery" inputmode="numeric" maxlength="6" placeholder="Enter pincode" aria-label="Delivery pincode"></div><small class="error"></small></label>
-            </div>
-            <div class="quote-details">
-              <label><span>Package weight</span><div class="quote-input"><i data-lucide="weight"></i><input id="heroWeight" inputmode="decimal" value="0.5" aria-label="Package weight"><em>kg</em></div><small class="error"></small></label>
-              <label><span>Payment mode</span><div class="quote-payment"><button class="active" type="button" data-quote-payment="prepaid">Prepaid</button><button type="button" data-quote-payment="cod">COD</button></div></label>
-            </div>
-            <button class="btn btn-primary hero-quote-submit" type="submit">Get best shipping rate <i data-lucide="arrow-right"></i></button>
-            <div id="heroQuoteResult" class="hero-quote-result" aria-live="polite">
-              <div><span class="result-check"><i data-lucide="badge-check"></i></span><p><small>Estimated best rate</small><strong>Enter delivery pincode</strong></p></div>
-              <button id="viewAllRates" type="button">Book this rate <i data-lucide="arrow-up-right"></i></button>
-            </div>
-            <div class="quote-trust"><span><i data-lucide="badge-indian-rupee"></i> No platform fee</span><span><i data-lucide="shield-check"></i> Insurance available</span><span><i data-lucide="headphones"></i> Human support</span></div>
-          </form>
-          <div class="quote-proof-card"><span class="proof-avatars"><i>BD</i><i>D</i><i>XB</i></span><div><b>100+ courier partners</b><small>compared in one click</small></div><i data-lucide="circle-check-big"></i></div>
-        </div>
-      </div>
-
-      <div class="container stats-bar reveal delay-2">
-        <div><strong data-count="50000">50,000+</strong><span>Shipments every month</span></div>
-        <div><strong data-count="100">100+</strong><span>Courier partners</span></div>
-        <div><strong data-count="25000">25,000+</strong><span>Growing businesses</span></div>
-        <div><strong data-count="99">99%</strong><span>Successful deliveries</span></div>
-      </div>
-    </section>
-
-    <section id="partners" class="partners section-pad-sm">
-      <div class="container">
-        <p class="partners-title">One platform. India’s most trusted courier network.</p>
-        <div class="partner-grid reveal">
-          <span><b>BLUE</b>DART</span><span class="delhivery">delhivery</span><span class="dtdc">DTDC<small>Express Ltd.</small></span><span class="xpress">XPRESSBEES</span><span class="ecom">ecom<span>express</span></span><span class="ekart"><i data-lucide="box"></i>ekart</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="solutions" class="audience-section pattern-bg pattern-dots section-pad">
-      <div class="container">
-        <div class="section-heading centered reveal"><div class="eyebrow"><span></span> Solutions for every business</div><h2>Shipping that fits the way <span>you sell</span></h2><p>Whether you are shipping your first order or expanding nationwide, get a courier network built around your business.</p></div>
-        <div class="audience-grid">
-          <article class="audience-card d2c reveal"><div class="audience-card-top"><span class="audience-icon"><i data-lucide="shopping-bag"></i></span><em>Most popular</em></div><h3>D2C & ecommerce brands</h3><p>Deliver a consistent post-purchase experience across your website and marketplaces.</p><ul><li><i data-lucide="check"></i> Shopify & WooCommerce integration</li><li><i data-lucide="check"></i> Branded tracking notifications</li><li><i data-lucide="check"></i> Easy returns and COD</li></ul><a href="#contact">Explore ecommerce shipping <i data-lucide="arrow-right"></i></a></article>
-          <article class="audience-card reveal delay-1"><div class="audience-card-top"><span class="audience-icon"><i data-lucide="store"></i></span></div><h3>Small businesses</h3><p>Access enterprise courier rates without contracts, setup fees or minimum volumes.</p><ul><li><i data-lucide="check"></i> Start with a single shipment</li><li><i data-lucide="check"></i> Doorstep pickup</li><li><i data-lucide="check"></i> Dedicated shipping support</li></ul><a href="#quote">Check your shipping rate <i data-lucide="arrow-right"></i></a></article>
-          <article class="audience-card reveal delay-2"><div class="audience-card-top"><span class="audience-icon"><i data-lucide="warehouse"></i></span></div><h3>B2B & manufacturers</h3><p>Move bulk consignments reliably across distributors, retailers and warehouses.</p><ul><li><i data-lucide="check"></i> Surface and air cargo</li><li><i data-lucide="check"></i> Multi-location pickups</li><li><i data-lucide="check"></i> GST-ready invoicing</li></ul><a href="#contact">Talk to a logistics expert <i data-lucide="arrow-right"></i></a></article>
-          <article class="audience-card enterprise reveal delay-3"><div class="audience-card-top"><span class="audience-icon"><i data-lucide="building-2"></i></span><em>Custom solution</em></div><h3>Enterprise logistics</h3><p>A scalable multi-courier setup with custom workflows, integrations and support.</p><ul><li><i data-lucide="check"></i> Shipping API and webhooks</li><li><i data-lucide="check"></i> Custom SLA and rate cards</li><li><i data-lucide="check"></i> Priority account management</li></ul><a href="#contact">Build your solution <i data-lucide="arrow-right"></i></a></article>
-        </div>
-        <div class="integration-strip reveal"><div><span><i data-lucide="plug-zap"></i></span><p><b>Connect your sales channels</b><small>Start shipping without changing how you work.</small></p></div><div class="integration-names"><span>Shopify</span><span>Woo</span><span>amazon</span><span>Flipkart</span><span><i data-lucide="code-2"></i> Custom API</span></div></div>
-      </div>
-    </section>
-
-    <section class="process pattern-bg pattern-route section-pad">
-      <div class="container">
-        <div class="section-heading centered reveal"><div class="eyebrow"><span></span> Simple by design</div><h2>From order to delivered in <span>four steps</span></h2></div>
-        <div class="steps">
-          <div class="step reveal"><span>01</span><div class="step-icon"><i data-lucide="user-plus"></i></div><h3>Create your account</h3><p>Sign up free. No contracts or setup fee.</p></div>
-          <div class="step reveal delay-1"><span>02</span><div class="step-icon"><i data-lucide="sliders-horizontal"></i></div><h3>Compare rates</h3><p>Choose the best courier for your order.</p></div>
-          <div class="step reveal delay-2"><span>03</span><div class="step-icon"><i data-lucide="printer"></i></div><h3>Book & print</h3><p>Schedule pickup and print your label.</p></div>
-          <div class="step reveal delay-3"><span>04</span><div class="step-icon"><i data-lucide="map-pinned"></i></div><h3>Track delivery</h3><p>Follow every milestone in real time.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services" class="services section-pad">
-      <div class="container">
-        <div class="heading-row reveal">
-          <div class="section-heading"><div class="eyebrow"><span></span> Built for every business</div><h2>Everything you need to <span>ship better</span></h2></div>
-          <p>From your first order to millions of deliveries, Shipray gives you the tools and courier network to grow without limits.</p>
-        </div>
-        <div class="services-grid">
-          <article class="service-card featured reveal"><div class="service-icon"><i data-lucide="truck"></i></div><span class="tag">Most popular</span><h3>Domestic shipping</h3><p>Reach 29,000+ pin codes with the right courier for every order.</p><a href="#quote">Explore service <i data-lucide="arrow-right"></i></a><div class="card-art route-art"><i data-lucide="package"></i><span></span><i data-lucide="home"></i></div></article>
-          <article class="service-card reveal delay-1"><div class="service-icon"><i data-lucide="plane"></i></div><h3>International shipping</h3><p>Simple cross-border delivery with paperwork and customs support.</p><a href="#contact">Explore service <i data-lucide="arrow-right"></i></a></article>
-          <article class="service-card reveal delay-2"><div class="service-icon"><i data-lucide="zap"></i></div><h3>Express delivery</h3><p>Priority air shipments for your most time-sensitive orders.</p><a href="#contact">Explore service <i data-lucide="arrow-right"></i></a></article>
-          <article class="service-card reveal"><div class="service-icon"><i data-lucide="building-2"></i></div><h3>B2B logistics</h3><p>Move bulk consignments with reliable surface and air cargo.</p><a href="#contact">Explore service <i data-lucide="arrow-right"></i></a></article>
-          <article class="service-card reveal delay-1"><div class="service-icon"><i data-lucide="rotate-ccw"></i></div><h3>Reverse pickup</h3><p>Make returns effortless for customers and operations teams.</p><a href="#contact">Explore service <i data-lucide="arrow-right"></i></a></article>
-          <article class="service-card reveal delay-2"><div class="service-icon"><i data-lucide="code-2"></i></div><h3>Shipping API</h3><p>Connect orders, labels and tracking directly to your stack.</p><a href="#contact">Explore service <i data-lucide="arrow-right"></i></a></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="tracking" class="tracking-section section-pad">
-      <div class="container tracking-grid">
-        <div class="tracking-copy reveal">
-          <div class="eyebrow light"><span></span> Live shipment tracking</div>
-          <h2>Every movement.<br><span>One clear view.</span></h2>
-          <p>Give your team and customers real-time visibility from pickup to doorstep—without chasing courier updates.</p>
-          <ul><li><i data-lucide="check"></i> Unified tracking across every courier</li><li><i data-lucide="check"></i> Email, SMS & WhatsApp notifications</li><li><i data-lucide="check"></i> Proactive NDR alerts and action</li></ul>
-        </div>
-        <div class="tracking-card privacy-tracker reveal delay-1">
-          <div class="track-search"><label for="trackingNo">Enter your shipment number</label><div><input id="trackingNo" placeholder="AWB or order ID" autocomplete="off"><button id="trackBtn" class="btn btn-primary" type="button">Track shipment</button></div><small id="trackError" class="error"></small></div>
-          <div id="trackEmpty" class="track-empty">
-            <div class="track-empty-visual"><span class="radar-ring r1"></span><span class="radar-ring r2"></span><i data-lucide="package-search"></i></div>
-            <h3>Your shipment journey appears here</h3>
-            <p>Enter your own AWB or order ID to securely view the latest movement.</p>
-            <div class="track-privacy"><span><i data-lucide="shield-check"></i> Private & secure</span><span><i data-lucide="radio-tower"></i> Live courier updates</span></div>
+        <figure class="hero-visual reveal delay-1">
+          <img src="assets/shipray-3d-logistics-hero.png" alt="3D logistics network with courier van, fulfilment warehouse, parcels and cargo airplane" width="1536" height="1024">
+          <div class="hero-float-card one">
+            <span><i data-lucide="route"></i></span>
+            <div><small>Smart courier selection</small><b>Best route matched</b></div>
           </div>
-          <div id="trackResult" class="track-result hidden" aria-live="polite">
-            <div class="track-head"><div><span id="trackedAwb">Your shipment</span><strong>Latest shipment status</strong></div><span class="status-pill">In transit</span></div>
-            <div class="secure-status"><i data-lucide="shield-check"></i><p><b>Secure tracking result</b><small>Only details linked to your entered shipment are displayed.</small></p></div>
-            <div class="track-status-grid">
-              <div class="complete"><span><i data-lucide="check"></i></span><b>Booked</b></div>
-              <div class="complete"><span><i data-lucide="check"></i></span><b>Picked up</b></div>
-              <div class="current"><span><i data-lucide="truck"></i></span><b>In transit</b></div>
-              <div><span><i data-lucide="home"></i></span><b>Delivered</b></div>
-            </div>
+          <div class="hero-float-card two">
+            <span><i data-lucide="circle-check-big"></i></span>
+            <div><small>Shipment status</small><b>Moving on schedule</b></div>
+          </div>
+        </figure>
+      </div>
+
+      <div class="container stat-strip reveal delay-2">
+        <div><strong>29,000+</strong><span>Serviceable pin codes</span></div>
+        <div><strong>100+</strong><span>Courier options</span></div>
+        <div><strong>50K+</strong><span>Monthly shipments</span></div>
+        <div><strong>99%</strong><span>Delivery success</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading center reveal">
+          <div class="eyebrow center">Explore the platform</div>
+          <h2 class="section-title">Every logistics workflow has its <span>own detailed space.</span></h2>
+          <p class="lead">Move beyond a crowded one-page site. Explore services, courier partners, tracking, pricing and business support in depth.</p>
+        </div>
+        <div class="card-grid">
+          <article class="card reveal">
+            <span class="icon-box"><i data-lucide="truck"></i></span>
+            <h3>Courier services</h3>
+            <p>Domestic, express, international, B2B cargo and reverse pickup solutions designed around your shipment.</p>
+            <a class="card-link" href="services.html">Explore services <i data-lucide="arrow-right"></i></a>
+          </article>
+          <article class="card reveal delay-1">
+            <span class="icon-box green"><i data-lucide="network"></i></span>
+            <h3>Courier partners</h3>
+            <p>See how Shipray matches every order with the right network based on route, SLA, weight and cost.</p>
+            <a class="card-link" href="partners.html">View our network <i data-lucide="arrow-right"></i></a>
+          </article>
+          <article class="card reveal delay-2">
+            <span class="icon-box amber"><i data-lucide="map-pinned"></i></span>
+            <h3>Live tracking</h3>
+            <p>Enter an AWB or order ID to view a clear milestone timeline and the latest shipment status.</p>
+            <a class="card-link" href="tracking.html">Track shipment <i data-lucide="arrow-right"></i></a>
+          </article>
+          <article class="card reveal">
+            <span class="icon-box"><i data-lucide="calculator"></i></span>
+            <h3>Transparent pricing</h3>
+            <p>Estimate shipping cost by route, weight and payment mode—without hidden platform charges.</p>
+            <a class="card-link" href="pricing.html">Calculate a rate <i data-lucide="arrow-right"></i></a>
+          </article>
+          <article class="card reveal delay-1">
+            <span class="icon-box green"><i data-lucide="building-2"></i></span>
+            <h3>About Shipray</h3>
+            <p>Meet the operating principles behind a logistics company built for dependable business growth.</p>
+            <a class="card-link" href="about.html">Our story <i data-lucide="arrow-right"></i></a>
+          </article>
+          <article class="card reveal delay-2">
+            <span class="icon-box navy"><i data-lucide="headphones"></i></span>
+            <h3>Human support</h3>
+            <p>Discuss courier selection, high-volume requirements and custom shipping workflows with our team.</p>
+            <a class="card-link" href="contact.html">Contact Shipray <i data-lucide="arrow-right"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface">
+      <div class="container split-grid">
+        <div class="reveal">
+          <div class="eyebrow">A simpler operating rhythm</div>
+          <h2 class="section-title">From order ready to <span>delivered.</span></h2>
+          <p class="lead">Shipray reduces the handoffs and guesswork that slow down fulfilment teams. One workflow keeps orders, courier selection and shipment visibility connected.</p>
+          <ul class="check-list">
+            <li>Compare route-level courier performance before booking</li>
+            <li>Generate consistent shipment and pickup workflows</li>
+            <li>Follow milestones across multiple courier networks</li>
+            <li>Use one support path when a shipment needs attention</li>
+          </ul>
+          <div class="hero-actions"><a class="btn btn-primary" href="services.html">See how it works <i data-lucide="arrow-right"></i></a></div>
+        </div>
+        <div class="visual-panel reveal delay-1">
+          <div class="visual-stack">
+            <div class="visual-row"><span><i data-lucide="package-check"></i></span><div><b>Order ready</b><small>Shipment details validated</small></div><strong>Done</strong></div>
+            <div class="visual-row"><span><i data-lucide="scan-line"></i></span><div><b>Courier matched</b><small>Route, weight and SLA compared</small></div><strong>Best fit</strong></div>
+            <div class="visual-row"><span><i data-lucide="truck"></i></span><div><b>Pickup completed</b><small>Moving through the network</small></div><strong>In transit</strong></div>
+            <div class="visual-row"><span><i data-lucide="house"></i></span><div><b>Doorstep delivery</b><small>Final milestone recorded</small></div><strong>On time</strong></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="why-clean pattern-bg pattern-grid section-pad">
+    <section class="section">
       <div class="container">
-        <div class="why-clean-head reveal"><div class="section-heading"><div class="eyebrow"><span></span> Why businesses choose Shipray</div><h2>Better shipping, without the <span>usual complexity</span></h2></div><div><p>Transparent rates, reliable courier options and genuine support—everything you need to deliver a better customer experience.</p><button class="btn btn-secondary open-booking" type="button">Start shipping smarter <i data-lucide="arrow-right"></i></button></div></div>
-        <div class="promise-grid">
-          <article class="promise-card promise-primary reveal"><div class="promise-top"><span><i data-lucide="badge-indian-rupee"></i></span><em>01</em></div><strong>Up to 40%</strong><h3>Lower shipping costs</h3><p>Access negotiated courier rates with no setup fee or monthly commitment.</p></article>
-          <article class="promise-card reveal delay-1"><div class="promise-top"><span><i data-lucide="map-pinned"></i></span><em>02</em></div><strong>29,000+</strong><h3>Serviceable pin codes</h3><p>Reach customers across metros, towns and remote locations throughout India.</p></article>
-          <article class="promise-card reveal delay-2"><div class="promise-top"><span><i data-lucide="waypoints"></i></span><em>03</em></div><strong>100+</strong><h3>Courier partners</h3><p>Choose the right courier for every destination, price and delivery speed.</p></article>
-          <article class="promise-card reveal delay-3"><div class="promise-top"><span><i data-lucide="headset"></i></span><em>04</em></div><strong>Human</strong><h3>Logistics support</h3><p>Get practical help from real shipping experts whenever you need it.</p></article>
+        <div class="cta-band reveal">
+          <div><h2>Ready to make shipping feel simpler?</h2><p>Start with an instant estimate or speak with our logistics team about a custom courier mix.</p></div>
+          <a class="btn btn-light btn-lg" href="pricing.html">Get your rate <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="promise-trust reveal"><span><i data-lucide="circle-check"></i> No setup fee</span><span><i data-lucide="circle-check"></i> No monthly subscription</span><span><i data-lucide="circle-check"></i> No long-term contract</span><span><i data-lucide="shield-check"></i> Shipment insurance available</span></div>
-      </div>
-    </section>
-
-    <section class="testimonials section-pad">
-      <div class="container">
-        <div class="section-heading centered reveal"><div class="eyebrow"><span></span> Customer stories</div><h2>Trusted by businesses that <span>never stop growing</span></h2></div>
-        <div class="testimonial-grid">
-          <article class="quote-card reveal"><div class="quote-mark">“</div><div class="stars">★★★★★</div><blockquote>Shipray helped us reduce shipping costs by 32% in the first month. The dashboard is genuinely easy for our entire team.</blockquote><div class="quote-person"><span>MJ</span><div><b>Meera Joshi</b><small>Founder, EarthKind Store</small></div></div></article>
-          <article class="quote-card featured-quote reveal delay-1"><div class="quote-mark">“</div><div class="stars">★★★★★</div><blockquote>We scaled from 100 to 2,000 orders a day without adding to our ops team. Their NDR workflow is a game changer.</blockquote><div class="quote-person"><span>RP</span><div><b>Rohan Patel</b><small>COO, Urban Thread</small></div></div></article>
-          <article class="quote-card reveal delay-2"><div class="quote-mark">“</div><div class="stars">★★★★★</div><blockquote>One integration gave us access to every courier we needed. Tracking is clearer and our support tickets dropped sharply.</blockquote><div class="quote-person"><span>AS</span><div><b>Ananya Shah</b><small>Growth, NutriBasket</small></div></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing" class="cta-section section-pad">
-      <div class="container cta-card reveal">
-        <div><div class="eyebrow light"><span></span> No setup fee. No monthly fee.</div><h2>Ready to make every<br>shipment count?</h2><p>Join 25,000+ Indian businesses shipping faster, smarter and for less.</p><div class="cta-actions"><button class="btn btn-white btn-lg open-booking" type="button">Create free account <i data-lucide="arrow-right"></i></button><a href="tel:+918487881121"><i data-lucide="phone"></i> Talk to an expert</a></div></div>
-        <div class="cta-graphic" aria-hidden="true"><div class="orbit o1"></div><div class="orbit o2"></div><div class="big-box"><img src="assets/shipray-mark.svg" alt=""></div><span class="orbit-icon oi1"><i data-lucide="truck"></i></span><span class="orbit-icon oi2"><i data-lucide="plane"></i></span><span class="orbit-icon oi3"><i data-lucide="package-check"></i></span></div>
-      </div>
-    </section>
-
-    <section id="faq" class="faq-section pattern-bg pattern-dots section-pad">
-      <div class="container faq-grid">
-        <div class="section-heading reveal"><div class="eyebrow"><span></span> Frequently asked</div><h2>Questions? We’ve got <span>answers.</span></h2><p>Can’t find what you need?</p><a href="#contact">Talk to our support team <i data-lucide="arrow-right"></i></a></div>
-        <div class="accordion reveal delay-1">
-          <article class="faq-item open"><button type="button" aria-expanded="true"><span>How does Shipray help me save on shipping?</span><i data-lucide="minus"></i></button><div><p>We aggregate shipment volume across thousands of businesses to negotiate better courier rates, then make those rates available to you with no monthly platform fee.</p></div></article>
-          <article class="faq-item"><button type="button" aria-expanded="false"><span>Which courier partners can I use?</span><i data-lucide="plus"></i></button><div><p>Choose from 100+ partners including Blue Dart, Delhivery, DTDC, XpressBees, Ecom Express, Ekart and more based on serviceability.</p></div></article>
-          <article class="faq-item"><button type="button" aria-expanded="false"><span>How are COD payments remitted?</span><i data-lucide="plus"></i></button><div><p>COD amounts are reconciled in your dashboard and transferred to your registered bank account on the agreed remittance cycle.</p></div></article>
-          <article class="faq-item"><button type="button" aria-expanded="false"><span>Can I integrate my online store?</span><i data-lucide="plus"></i></button><div><p>Yes. Connect Shopify, WooCommerce, Magento and marketplaces, or use our API for a custom storefront and order workflow.</p></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="contact-section section-pad">
-      <div class="container contact-grid">
-        <div class="contact-copy reveal"><div class="eyebrow"><span></span> Let’s talk logistics</div><h2>Tell us where you want to <span>grow next.</span></h2><p>Our shipping experts will help you find the right courier mix for your business.</p><div class="contact-list"><a href="tel:+918487881121"><i data-lucide="phone"></i><span><small>Call us</small>+91 84878 81121</span></a><a href="mailto:info@shipraylogistics.com"><i data-lucide="mail"></i><span><small>Email</small>info@shipraylogistics.com</span></a><div><i data-lucide="map-pin"></i><span><small>Visit</small>Navrangpura, Ahmedabad 380009</span></div></div></div>
-        <form id="contactForm" class="contact-form reveal delay-1" novalidate><div class="form-row"><label><span>Your name</span><input name="name" placeholder="Full name" required><small class="error"></small></label><label><span>Work email</span><input name="email" type="email" placeholder="you@company.com" required><small class="error"></small></label></div><div class="form-row"><label><span>Phone number</span><input name="phone" inputmode="tel" placeholder="10-digit mobile" required><small class="error"></small></label><label><span>Monthly shipments</span><select name="volume"><option>Under 500</option><option>500 – 2,000</option><option>2,000 – 10,000</option><option>10,000+</option></select></label></div><label><span>How can we help?</span><textarea name="message" rows="3" placeholder="Tell us a little about your shipping needs"></textarea></label><button class="btn btn-primary" type="submit">Request a callback <i data-lucide="arrow-right"></i></button></form>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-main"><div class="footer-brand"><a class="brand brand-light" href="#home"><img class="brand-logo footer-logo" src="assets/shipray-logo-light.svg" alt="Shipray Logistics Pvt. Ltd." width="330" height="92"></a><p>Technology that makes shipping simpler, faster and more affordable for every Indian business.</p><div class="socials"><button type="button" aria-label="LinkedIn"><i data-lucide="linkedin"></i></button><button type="button" aria-label="Instagram"><i data-lucide="instagram"></i></button><button type="button" aria-label="Facebook"><i data-lucide="facebook"></i></button></div></div><div><h3>Platform</h3><a href="#quote">Rate calculator</a><a href="#tracking">Tracking</a><a href="#services">Services</a><a href="#pricing">Pricing</a></div><div><h3>Company</h3><a href="#about">About us</a><a href="#contact">Contact</a><a href="#">Careers</a><a href="#">Blog</a></div><div><h3>Support</h3><a href="#faq">Help center</a><a href="#">API docs</a><a href="#">Terms</a><a href="#">Privacy</a></div></div>
-    <div class="container footer-bottom"><span>© 2026 Shipray Logistics Pvt. Ltd. All rights reserved.</span><span>Made with care in Ahmedabad, India <b>🇮🇳</b></span></div>
-  </footer>
-
-  <button id="chatButton" class="chat-button" type="button" aria-label="Chat with us"><i data-lucide="message-circle"></i><span>Chat with us</span></button>
-  <a class="whatsapp" href="https://wa.me/918487881121?text=Hi%20Shipray%2C%20I%20need%20help%20with%20shipping" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp"><i data-lucide="message-circle"></i></a>
-  <button id="backTop" class="back-top" type="button" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
-
-  <div id="bookingModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-card"><button class="modal-close" type="button" aria-label="Close"><i data-lucide="x"></i></button><div class="modal-icon"><i data-lucide="package-plus"></i></div><h2 id="modalTitle">Start shipping with Shipray</h2><p>Create your free account and our team will help you ship your first order.</p><form id="bookingForm" novalidate><label><span>Full name</span><input name="name" placeholder="Your name" required><small class="error"></small></label><label><span>Mobile number</span><input name="phone" inputmode="tel" placeholder="10-digit mobile" required><small class="error"></small></label><label><span>Business name</span><input name="business" placeholder="Company or store name" required><small class="error"></small></label><button class="btn btn-primary" type="submit">Create free account <i data-lucide="arrow-right"></i></button></form><small class="fine-print">By continuing, you agree to our Terms & Privacy Policy.</small></div></div>
-  <div id="loginModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="loginTitle"><div class="modal-card"><button class="modal-close login-close" type="button" aria-label="Close"><i data-lucide="x"></i></button><div class="modal-icon"><i data-lucide="log-in"></i></div><h2 id="loginTitle">Welcome back</h2><p>Log in to manage orders, tracking, wallet and reports.</p><form id="loginForm" novalidate><label><span>Email address</span><input name="email" type="email" placeholder="you@company.com" required><small class="error"></small></label><label><span>Password</span><input name="password" type="password" minlength="6" placeholder="Your password" required><small class="error"></small></label><div class="login-options"><label><input type="checkbox" name="remember"> Remember me</label><button id="forgotPassword" type="button">Forgot password?</button></div><button class="btn btn-primary" type="submit">Login to dashboard <i data-lucide="arrow-right"></i></button></form><small class="fine-print">New to Shipray? <button class="switch-register" type="button">Create a free account</button></small></div></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"><i data-lucide="circle-check"></i><span></span></div>
-  <div id="cookieBanner" class="cookie-banner"><div><i data-lucide="cookie"></i><p>We use essential cookies to give you a better shipping experience.</p></div><button id="acceptCookies" class="btn btn-small" type="button">Got it</button></div>
+  <footer data-site-footer></footer>
   <script src="config.js"></script>
   <script src="script.js"></script>
 </body>

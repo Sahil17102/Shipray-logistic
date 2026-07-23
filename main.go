@@ -18,7 +18,7 @@ const defaultAPIBaseURL = "https://shipray-logisticbackend.onrender.com"
 // frontend contains the complete site so the Render binary has no external
 // runtime file dependencies.
 //
-//go:embed index.html script.js styles.css assets
+//go:embed *.html script.js styles.css assets
 var frontend embed.FS
 
 type browserConfig struct {
