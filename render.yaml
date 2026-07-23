@@ -1,10 +1,9 @@
 services:
   - type: web
     name: shipray-logistic
-    runtime: go
-    buildCommand: go build -tags netgo -ldflags '-s -w' -o app .
-    startCommand: ./app
-    healthCheckPath: /healthz
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
     envVars:
       - key: API_BASE_URL
         value: https://shipray-logisticbackend.onrender.com
@@ -12,3 +11,10 @@ services:
         value: https://shipray-logisticbackend.onrender.com
       - key: FRONTEND_URL
         value: https://shipray-logistic.onrender.com
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
