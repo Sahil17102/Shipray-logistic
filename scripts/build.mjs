@@ -3,12 +3,10 @@ import { resolve } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
 const output = resolve(root, 'dist');
-const apiBaseUrl = (process.env.API_BASE_URL || process.env.BACKEND_URL || '').replace(/\/+$/, '');
-const frontendUrl = (process.env.FRONTEND_URL || '').replace(/\/+$/, '');
-
-if (!apiBaseUrl) {
-  throw new Error('API_BASE_URL (or BACKEND_URL) is required for the production build.');
-}
+const defaultApiBaseUrl = 'https://shipray-logisticbackend.onrender.com';
+const defaultFrontendUrl = 'https://shipray-logistic.onrender.com';
+const apiBaseUrl = (process.env.API_BASE_URL || process.env.BACKEND_URL || defaultApiBaseUrl).replace(/\/+$/, '');
+const frontendUrl = (process.env.FRONTEND_URL || defaultFrontendUrl).replace(/\/+$/, '');
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
