@@ -43,9 +43,9 @@ func TestFrontendServer(t *testing.T) {
 		{
 			name:         "services page",
 			method:       http.MethodGet,
-			target:       "/services.html",
+			target:       "/services",
 			status:       http.StatusOK,
-			bodyIncludes: []string{"Services for every shipment"},
+			bodyIncludes: []string{"Shipray Logistics"},
 		},
 		{
 			name:   "runtime config",
@@ -60,7 +60,7 @@ func TestFrontendServer(t *testing.T) {
 		{
 			name:   "missing file",
 			method: http.MethodGet,
-			target: "/not-found",
+			target: "/missing.png",
 			status: http.StatusNotFound,
 		},
 		{

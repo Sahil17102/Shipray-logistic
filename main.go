@@ -15,10 +15,9 @@ import (
 
 const defaultAPIBaseURL = "https://shipray-logisticbackend.onrender.com"
 
-// frontend contains the complete site so the Render binary has no external
-// runtime file dependencies.
+// frontend contains the production Vite build.
 //
-//go:embed *.html script.js styles.css assets
+//go:embed dist
 var frontend embed.FS
 
 type browserConfig struct {
@@ -98,7 +97,11 @@ func configHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func staticHandler() http.Handler {
-	files := http.FileServer(http.FS(frontend))
+	built, err := fs.Sub(frontend, "dist")
+	if err != nil {
+		panic(err)
+	}
+	files := http.FileServer(http.FS(built))
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodGet && r.Method != http.MethodHead {
@@ -112,10 +115,16 @@ func staticHandler() http.Handler {
 			name = "index.html"
 		}
 
-		info, err := fs.Stat(frontend, name)
-		if err != nil || info.IsDir() {
-			http.NotFound(w, r)
-			return
+		info, statErr := fs.Stat(built, name)
+		if statErr != nil || info.IsDir() {
+			// React Router owns application routes; missing file-like assets
+			// still return a real 404.
+			if path.Ext(name) != "" {
+				http.NotFound(w, r)
+				return
+			}
+			name = "index.html"
+			r.URL.Path = "/"
 		}
 
 		if name == "index.html" {
