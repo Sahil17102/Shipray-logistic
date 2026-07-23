@@ -3,4 +3,6 @@
 !.env.example
 dist/
 node_modules/
+app
+app.exe
 .DS_Store
