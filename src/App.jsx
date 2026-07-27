@@ -8,33 +8,114 @@ import {
 } from 'lucide-react'
 import { Link, NavLink, Route as RouterRoute, Routes, useLocation } from 'react-router-dom'
 
-const platformItems = [
+const productMenuGroups = [
   {
-    label: 'Sales Channels',
-    copy: 'Connect storefronts and marketplaces',
-    to: '/integrations/sales-channels',
-    icon: ShoppingBag,
+    title: 'Shipping',
+    icon: Truck,
+    items: [
+      ['Domestic Shipping', 'Shipping across 29,000+ pin codes', '/rate-calculator', PackageCheck],
+      ['Cargo Shipping', 'Nationwide B2B and bulk movement', '/integrations/courier-partners', Warehouse],
+      ['Quick', 'Speedy local deliveries at practical rates', '/rate-calculator', Zap],
+      ['Fulfillment', 'Warehousing, packaging and shipping', '/integrations', Store],
+    ],
   },
   {
-    label: 'Courier Partners',
-    copy: 'Access a flexible delivery network',
-    to: '/integrations/courier-partners',
-    icon: Truck,
+    title: 'Cross-Border',
+    icon: Globe2,
+    items: [
+      ['ShipX', 'Shipping to 220+ countries and territories', '/integrations/courier-partners', Plane],
+      ['CargoX', 'Cross-border B2B and bulk shipping', '/integrations/courier-partners', Box],
+      ['Duty Calculator', 'Estimate duties for global shipments', '/rate-calculator', BadgeIndianRupee],
+    ],
+  },
+  {
+    title: 'Growth & Marketing',
+    icon: BarChart3,
+    items: [
+      ['Shipray AI Suite', 'AI-native tools for pre-order growth', '/blogs', Sparkles],
+      ['Promise', 'EDD and trust signals for ecommerce', '/tracking', CircleCheck],
+      ['ONDC', 'Wider digital visibility through ONDC', '/integrations/sales-channels', ShoppingBag],
+    ],
+  },
+  {
+    title: 'Financial Services',
+    icon: BadgeIndianRupee,
+    items: [
+      ['Capital', 'Financial support for business growth', '/rate-calculator', Building2],
+      ['Credit Score', 'Understand business credit readiness', '/blogs', ShieldCheck],
+    ],
+  },
+  {
+    title: 'AI Enabled Products',
+    icon: Sparkles,
+    items: [
+      ['Sense', 'Turn logistics data into useful actions', '/blogs', BarChart3],
+      ['Voice AI', 'Add intelligent voice to workflows', '/blogs', Phone],
+      ['Trends', 'Commerce behaviour and shipping analytics', '/blogs', Route],
+    ],
   },
 ]
 
-const toolItems = [
+const valueAddedItems = [
+  ['Delivery Boost', '/tracking', Zap],
+  ['Dark Stores', '/integrations', Store],
+  ['Delight Tracking', '/tracking', LocateFixed],
+  ['Instant COD', '/rate-calculator', BadgeIndianRupee],
+  ['Instant Pick Up', '/rate-calculator', PackageSearch],
+  ['Shipray Prime', '/', Sparkles],
+  ['Omuni', '/integrations', PlugZap],
+  ['Packaging', '/weight-calculator', Box],
+  ['Co-Pilot', '/blogs', Headphones],
+  ['Returns Management', '/tracking', RefreshCcw],
+]
+
+const platformFeatureItems = [
+  ['Cash on Delivery', 'Flexible payment collection workflows', '/rate-calculator', BadgeIndianRupee],
+  ['Serviceable Pincodes', 'Check reach before every booking', '/rate-calculator', MapPin],
+  ['API Integration', 'Connect orders and shipment events', '/integrations', Code2],
+  ['Multiple Pickup Locations', 'Dispatch from every active warehouse', '/integrations', Warehouse],
+  ['Print Shipping Labels', 'Prepare courier-ready documentation', '/weight-calculator', PackageCheck],
+  ['Email & SMS Notification', 'Keep customers informed automatically', '/tracking', Mail],
+  ['Marketplace Self-Ship', 'Manage marketplace orders your way', '/integrations/sales-channels', ShoppingBag],
+  ['All Features', 'Explore the complete Shipray platform', '/integrations', Sparkles],
+]
+
+const partnerMenuGroups = [
   {
-    label: 'Weight Estimator',
-    copy: 'Calculate chargeable parcel weight',
-    to: '/weight-calculator',
-    icon: Scale,
+    title: 'Integrations',
+    items: [
+      ['Carrier Integration', 'Connect courier partners and automate shipping', '/integrations/courier-partners', Truck],
+      ['Channel Integration', 'Connect your store and order channels', '/integrations/sales-channels', ShoppingBag],
+    ],
   },
   {
-    label: 'Rate Calculator',
-    copy: 'Compare estimated shipping costs',
-    to: '/rate-calculator',
-    icon: BadgeIndianRupee,
+    title: 'Partner Program',
+    items: [
+      ['Become a Partner', 'Collaborate with Shipray and unlock growth opportunities', '/integrations', Building2],
+    ],
+  },
+]
+
+const resourceMenuGroups = [
+  {
+    title: 'Product Help',
+    items: [
+      ['Shipping Rate Calculator', 'Estimate route-level shipping costs', '/rate-calculator', BadgeIndianRupee],
+      ['Volumetric Weight Calculator', 'Find the chargeable parcel weight', '/weight-calculator', Scale],
+      ['Free Ecommerce Tools', 'Practical tools for growing sellers', '/weight-calculator', Ruler],
+      ['Knowledge Base', 'Answers for everyday shipping questions', '/blogs', BookOpen],
+      ['Developers', 'Connect with Shipray workflows and APIs', '/integrations', Code2],
+    ],
+  },
+  {
+    title: 'Learn',
+    items: [
+      ['Blog', 'Shipping guides, ideas and insights', '/blogs', BookOpen],
+      ['Ebook', 'Long-form ecommerce playbooks', '/blogs', PackageSearch],
+      ['Encyclopedia', 'Simple logistics terms and concepts', '/blogs', Globe2],
+      ['Videos & Podcast', 'Learn from operators and experts', '/blogs', Headphones],
+      ['FAQs', 'Quick answers about Shipray', '/blogs', CircleCheck],
+    ],
   },
 ]
 
@@ -101,6 +182,43 @@ function ScrollTop() {
   return null
 }
 
+function MegaMenuItem({ item }) {
+  const [label, copy, to, Icon] = item
+  return (
+    <NavLink className="mega-link" to={to}>
+      <span className="mega-link-icon"><Icon /></span>
+      <span><strong>{label}</strong>{copy && <small>{copy}</small>}</span>
+      <ChevronRight className="mega-link-arrow" />
+    </NavLink>
+  )
+}
+
+function MegaMenuSection({ group }) {
+  const GroupIcon = group.icon
+  return (
+    <section className="mega-section">
+      <div className="mega-section-title">
+        {GroupIcon && <span><GroupIcon /></span>}
+        <strong>{group.title}</strong>
+      </div>
+      <div className="mega-section-links">
+        {group.items.map(item => <MegaMenuItem item={item} key={item[0]} />)}
+      </div>
+    </section>
+  )
+}
+
+function MobileNavGroups({ groups }) {
+  return groups.map(group => (
+    <div className="mobile-nav-section" key={group.title}>
+      <span className="mobile-submenu-title">{group.title}</span>
+      {group.items.map(([label, , to, Icon]) => (
+        <NavLink key={label} to={to}><Icon /> {label}</NavLink>
+      ))}
+    </div>
+  ))
+}
+
 function Header() {
   const [open, setOpen] = useState(false)
   const [desktopMenu, setDesktopMenu] = useState(null)
@@ -136,6 +254,10 @@ function Header() {
     setMobileGroup(current => current === group ? null : group)
   }
 
+  const toggleDesktopMenu = (menu) => {
+    setDesktopMenu(current => current === menu ? null : menu)
+  }
+
   return (
     <header className="site-nav" ref={headerRef}>
       <div className="nav-inner">
@@ -144,7 +266,7 @@ function Header() {
         </Link>
         <nav className="desktop-links" aria-label="Main navigation">
           <div
-            className="nav-dropdown-wrap"
+            className={`nav-dropdown-wrap ${desktopMenu === 'products' ? 'menu-open' : ''}`}
             onMouseEnter={() => setDesktopMenu('products')}
             onMouseLeave={() => setDesktopMenu(null)}
           >
@@ -153,31 +275,33 @@ function Header() {
               type="button"
               aria-expanded={desktopMenu === 'products'}
               aria-controls="products-menu"
-              onClick={() => setDesktopMenu('products')}
+              onClick={() => toggleDesktopMenu('products')}
             >
               Products <ChevronDown />
             </button>
             <div
               id="products-menu"
-              className={`nav-dropdown tools-dropdown products-dropdown ${desktopMenu === 'products' ? 'open' : ''}`}
+              className={`mega-menu mega-products ${desktopMenu === 'products' ? 'open' : ''}`}
             >
-              <div className="dropdown-heading">
-                <span>SHIPRAY PRODUCTS</span>
-                <strong>Tools that simplify every shipment.</strong>
+              <div className="mega-menu-head">
+                <div><small>SHIPRAY PRODUCTS</small><strong>Everything your commerce journey needs</strong></div>
+                <Link to="/integrations">Explore all products <ArrowRight /></Link>
               </div>
-              <div className="tool-dropdown-grid">
-                {toolItems.map(({ label, copy, to, icon: Icon }) => (
-                  <NavLink className="tool-dropdown-card" key={to} to={to}>
-                    <span className="dropdown-option-icon"><Icon /></span>
-                    <span><strong>{label}</strong><small>{copy}</small></span>
-                    <ArrowRight className="option-arrow" />
-                  </NavLink>
-                ))}
+              <div className="mega-products-grid">
+                {productMenuGroups.map(group => <MegaMenuSection group={group} key={group.title} />)}
+              </div>
+              <div className="mega-value-row">
+                <strong>Value Added Services</strong>
+                <div>
+                  {valueAddedItems.map(([label, to, Icon]) => (
+                    <NavLink to={to} key={label}><Icon /> {label}</NavLink>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
           <div
-            className="nav-dropdown-wrap"
+            className={`nav-dropdown-wrap ${desktopMenu === 'platform' ? 'menu-open' : ''}`}
             onMouseEnter={() => setDesktopMenu('platform')}
             onMouseLeave={() => setDesktopMenu(null)}
           >
@@ -186,38 +310,35 @@ function Header() {
               type="button"
               aria-expanded={desktopMenu === 'platform'}
               aria-controls="platform-menu"
-              onClick={() => setDesktopMenu('platform')}
+              onClick={() => toggleDesktopMenu('platform')}
             >
               Platform <ChevronDown />
             </button>
             <div
               id="platform-menu"
-              className={`nav-dropdown platform-dropdown ${desktopMenu === 'platform' ? 'open' : ''}`}
+              className={`mega-menu mega-platform ${desktopMenu === 'platform' ? 'open' : ''}`}
             >
-              <Link className="dropdown-lead" to="/integrations">
-                <span className="dropdown-lead-icon"><PlugZap /></span>
-                <div>
-                  <small>PLATFORM</small>
-                  <strong>Integrations</strong>
-                  <p>Bring every order and delivery partner into one workflow.</p>
+              <div className="mega-feature-panel">
+                <div className="mega-menu-head">
+                  <div><small>PLATFORM</small><strong>Features that power every shipment</strong></div>
+                  <Link to="/integrations">All features <ArrowRight /></Link>
                 </div>
-                <ChevronRight className="lead-arrow" />
-              </Link>
-              <div className="dropdown-options">
-                <span className="dropdown-label">Explore integrations</span>
-                {platformItems.map(({ label, copy, to, icon: Icon }) => (
-                  <NavLink className="dropdown-option" key={to} to={to}>
-                    <span className="dropdown-option-icon"><Icon /></span>
-                    <span><strong>{label}</strong><small>{copy}</small></span>
-                    <ArrowRight className="option-arrow" />
-                  </NavLink>
-                ))}
+                <div className="mega-feature-grid">
+                  {platformFeatureItems.map(item => <MegaMenuItem item={item} key={item[0]} />)}
+                </div>
               </div>
-            </div>
+              <Link className="mega-promo" to="/integrations">
+                <span className="mega-promo-icon"><Building2 /></span>
+                <small>REFER &amp; GROW</small>
+                <strong>Build the network with Shipray</strong>
+                <p>Connect sellers, channels and delivery partners in one growing ecosystem.</p>
+                <span className="mega-promo-action">Know more <ArrowRight /></span>
+              </Link>
+              </div>
           </div>
           <NavLink to="/rate-calculator">Pricing</NavLink>
           <div
-            className="nav-dropdown-wrap"
+            className={`nav-dropdown-wrap ${desktopMenu === 'partners' ? 'menu-open' : ''}`}
             onMouseEnter={() => setDesktopMenu('partners')}
             onMouseLeave={() => setDesktopMenu(null)}
           >
@@ -226,29 +347,25 @@ function Header() {
               type="button"
               aria-expanded={desktopMenu === 'partners'}
               aria-controls="partners-menu"
-              onClick={() => setDesktopMenu('partners')}
+              onClick={() => toggleDesktopMenu('partners')}
             >
               Partners <ChevronDown />
             </button>
             <div
               id="partners-menu"
-              className={`nav-dropdown compact-dropdown partners-dropdown ${desktopMenu === 'partners' ? 'open' : ''}`}
+              className={`mega-menu mega-partners ${desktopMenu === 'partners' ? 'open' : ''}`}
             >
-              <NavLink className="dropdown-option" to="/integrations/courier-partners">
-                <span className="dropdown-option-icon"><Truck /></span>
-                <span><strong>Courier Partners</strong><small>Explore the delivery network</small></span>
-                <ArrowRight className="option-arrow" />
-              </NavLink>
-              <NavLink className="dropdown-option" to="/integrations/sales-channels">
-                <span className="dropdown-option-icon"><Building2 /></span>
-                <span><strong>Channel Partners</strong><small>Connect your commerce stack</small></span>
-                <ArrowRight className="option-arrow" />
-              </NavLink>
+              <div className="mega-menu-head">
+                <div><small>PARTNERS</small><strong>Grow with the Shipray ecosystem</strong></div>
+              </div>
+              <div className="mega-partner-grid">
+                {partnerMenuGroups.map(group => <MegaMenuSection group={group} key={group.title} />)}
+              </div>
             </div>
           </div>
           <NavLink to="/tracking">Track Order</NavLink>
           <div
-            className="nav-dropdown-wrap"
+            className={`nav-dropdown-wrap ${desktopMenu === 'resources' ? 'menu-open' : ''}`}
             onMouseEnter={() => setDesktopMenu('resources')}
             onMouseLeave={() => setDesktopMenu(null)}
           >
@@ -257,29 +374,30 @@ function Header() {
               type="button"
               aria-expanded={desktopMenu === 'resources'}
               aria-controls="resources-menu"
-              onClick={() => setDesktopMenu('resources')}
+              onClick={() => toggleDesktopMenu('resources')}
             >
               Resources <ChevronDown />
             </button>
             <div
               id="resources-menu"
-              className={`nav-dropdown compact-dropdown resources-dropdown ${desktopMenu === 'resources' ? 'open' : ''}`}
+              className={`mega-menu mega-resources ${desktopMenu === 'resources' ? 'open' : ''}`}
             >
-              <NavLink className="dropdown-option" to="/blogs">
-                <span className="dropdown-option-icon"><BookOpen /></span>
-                <span><strong>Blogs</strong><small>Shipping guides and insights</small></span>
-                <ArrowRight className="option-arrow" />
-              </NavLink>
-              <NavLink className="dropdown-option" to="/weight-calculator">
-                <span className="dropdown-option-icon"><Scale /></span>
-                <span><strong>Weight Estimator</strong><small>Find chargeable parcel weight</small></span>
-                <ArrowRight className="option-arrow" />
-              </NavLink>
+              <div className="mega-resource-columns">
+                {resourceMenuGroups.map(group => <MegaMenuSection group={group} key={group.title} />)}
+              </div>
+              <Link className="mega-promo resource-promo" to="/blogs">
+                <span className="mega-promo-icon"><BookOpen /></span>
+                <small>CUSTOMER STORIES</small>
+                <strong>See how sellers grow with Shipray</strong>
+                <p>Practical stories from teams simplifying logistics and scaling commerce.</p>
+                <span className="mega-promo-action">Read stories <ArrowRight /></span>
+              </Link>
             </div>
           </div>
         </nav>
         <div className="nav-actions">
           <Link className="login-button" to="/login">Log In</Link>
+          <Link className="try-button" to="/rate-calculator">Try for Free</Link>
           <button
             className="menu-button"
             onClick={() => setOpen(!open)}
@@ -296,17 +414,20 @@ function Header() {
             Products <ChevronDown />
           </button>
           {mobileGroup === 'products' && (
-            <div className="mobile-submenu">
-              {toolItems.map(({ label, to, icon: Icon }) => <NavLink key={to} to={to}><Icon /> {label}</NavLink>)}
+            <div className="mobile-submenu mobile-mega-submenu">
+              <MobileNavGroups groups={productMenuGroups} />
+              <div className="mobile-nav-section">
+                <span className="mobile-submenu-title">Value Added Services</span>
+                {valueAddedItems.map(([label, to, Icon]) => <NavLink key={label} to={to}><Icon /> {label}</NavLink>)}
+              </div>
             </div>
           )}
           <button className="mobile-group-trigger" type="button" onClick={() => toggleMobileGroup('platform')} aria-expanded={mobileGroup === 'platform'}>
             Platform <ChevronDown />
           </button>
           {mobileGroup === 'platform' && (
-            <div className="mobile-submenu">
-              <span className="mobile-submenu-title">Integrations <ChevronRight /></span>
-              {platformItems.map(({ label, to, icon: Icon }) => <NavLink key={to} to={to}><Icon /> {label}</NavLink>)}
+            <div className="mobile-submenu mobile-mega-submenu">
+              <MobileNavGroups groups={[{ title: 'Features', items: platformFeatureItems }]} />
             </div>
           )}
           <NavLink to="/rate-calculator">Pricing</NavLink>
@@ -314,9 +435,8 @@ function Header() {
             Partners <ChevronDown />
           </button>
           {mobileGroup === 'partners' && (
-            <div className="mobile-submenu">
-              <NavLink to="/integrations/courier-partners"><Truck /> Courier Partners</NavLink>
-              <NavLink to="/integrations/sales-channels"><Building2 /> Channel Partners</NavLink>
+            <div className="mobile-submenu mobile-mega-submenu">
+              <MobileNavGroups groups={partnerMenuGroups} />
             </div>
           )}
           <NavLink to="/tracking">Track Order</NavLink>
@@ -324,12 +444,18 @@ function Header() {
             Resources <ChevronDown />
           </button>
           {mobileGroup === 'resources' && (
-            <div className="mobile-submenu">
-              <NavLink to="/blogs"><BookOpen /> Blogs</NavLink>
-              <NavLink to="/weight-calculator"><Scale /> Weight Estimator</NavLink>
+            <div className="mobile-submenu mobile-mega-submenu">
+              <MobileNavGroups groups={resourceMenuGroups} />
+              <div className="mobile-nav-section">
+                <span className="mobile-submenu-title">Stories</span>
+                <NavLink to="/blogs"><BookOpen /> Customer Stories</NavLink>
+              </div>
             </div>
           )}
-          <Link className="login-button mobile-login" to="/login">Log In</Link>
+          <div className="mobile-auth-actions">
+            <Link className="login-button mobile-login" to="/login">Log In</Link>
+            <Link className="try-button" to="/rate-calculator">Try for Free</Link>
+          </div>
         </div>
       )}
     </header>
