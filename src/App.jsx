@@ -1,17 +1,41 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
-  ArrowRight, BadgeIndianRupee, BarChart3, Box, Building2, Check,
-  CircleCheck, Clock3, Code2, Globe2, Headphones, Instagram, Linkedin, LocateFixed,
-  Mail, MapPin, Menu, PackageCheck, Phone, Plane, RefreshCcw, Route, Ruler, Scale,
-  Search, ShieldCheck, ShoppingBag, Sparkles, Store, Truck, Warehouse, X, Zap,
+  ArrowRight, BadgeIndianRupee, BarChart3, BookOpen, Box, Building2, Check,
+  ChevronDown, ChevronRight, CircleCheck, Clock3, Code2, Globe2, Headphones,
+  Instagram, Linkedin, LocateFixed, Mail, MapPin, Menu, PackageCheck, PackageSearch,
+  Phone, Plane, PlugZap, RefreshCcw, Route, Ruler, Scale, Search, ShieldCheck,
+  ShoppingBag, Sparkles, Store, Truck, Warehouse, X, Zap,
 } from 'lucide-react'
 import { Link, NavLink, Route as RouterRoute, Routes, useLocation } from 'react-router-dom'
 
-const nav = [
-  ['Home', '/'],
-  ['Weight Calculator', '/weight-calculator'],
-  ['Rate Calculator', '/rate-calculator'],
-  ['Track Order', '/tracking'],
+const platformItems = [
+  {
+    label: 'Sales Channels',
+    copy: 'Connect storefronts and marketplaces',
+    to: '/integrations/sales-channels',
+    icon: ShoppingBag,
+  },
+  {
+    label: 'Courier Partners',
+    copy: 'Access a flexible delivery network',
+    to: '/integrations/courier-partners',
+    icon: Truck,
+  },
+]
+
+const toolItems = [
+  {
+    label: 'Weight Estimator',
+    copy: 'Calculate chargeable parcel weight',
+    to: '/weight-calculator',
+    icon: Scale,
+  },
+  {
+    label: 'Rate Calculator',
+    copy: 'Compare estimated shipping costs',
+    to: '/rate-calculator',
+    icon: BadgeIndianRupee,
+  },
 ]
 
 const products = [
@@ -79,34 +103,173 @@ function ScrollTop() {
 
 function Header() {
   const [open, setOpen] = useState(false)
+  const [desktopMenu, setDesktopMenu] = useState(null)
+  const [mobileGroup, setMobileGroup] = useState(null)
+  const headerRef = useRef(null)
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    setOpen(false)
+    setDesktopMenu(null)
+    setMobileGroup(null)
+  }, [pathname])
+
+  useEffect(() => {
+    const closeMenus = (event) => {
+      if (!headerRef.current?.contains(event.target)) setDesktopMenu(null)
+    }
+    const closeOnEscape = (event) => {
+      if (event.key === 'Escape') {
+        setDesktopMenu(null)
+        setOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', closeMenus)
+    document.addEventListener('keydown', closeOnEscape)
+    return () => {
+      document.removeEventListener('pointerdown', closeMenus)
+      document.removeEventListener('keydown', closeOnEscape)
+    }
+  }, [])
+
+  const toggleMobileGroup = (group) => {
+    setMobileGroup(current => current === group ? null : group)
+  }
+
   return (
     <>
       <div className="offer-bar">
         <span>Launch offer: get <strong>20% off</strong> your first five shipments</span>
         <Link to="/rate-calculator">Calculate now <ArrowRight size={14} /></Link>
       </div>
-      <header className="site-nav">
+      <header className="site-nav" ref={headerRef}>
         <div className="shell nav-inner">
           <Link to="/" className="brand" aria-label="Shipray home">
             <img src="/assets/shipray-logo.svg" alt="Shipray Logistics" />
           </Link>
           <nav className="desktop-links" aria-label="Main navigation">
-            {nav.map(([label, to]) => (
-              <NavLink key={to} to={to}>
-                {label}
-              </NavLink>
-            ))}
+            <div
+              className="nav-dropdown-wrap"
+              onMouseEnter={() => setDesktopMenu('platform')}
+              onMouseLeave={() => setDesktopMenu(null)}
+            >
+              <button
+                className={`nav-trigger ${pathname.startsWith('/integrations') ? 'active' : ''}`}
+                type="button"
+                aria-expanded={desktopMenu === 'platform'}
+                aria-controls="platform-menu"
+                onClick={() => setDesktopMenu('platform')}
+              >
+                Platform <ChevronDown />
+              </button>
+              <div
+                id="platform-menu"
+                className={`nav-dropdown platform-dropdown ${desktopMenu === 'platform' ? 'open' : ''}`}
+              >
+                <Link className="dropdown-lead" to="/integrations">
+                  <span className="dropdown-lead-icon"><PlugZap /></span>
+                  <div>
+                    <small>PLATFORM</small>
+                    <strong>Integrations</strong>
+                    <p>Bring every order and delivery partner into one workflow.</p>
+                  </div>
+                  <ChevronRight className="lead-arrow" />
+                </Link>
+                <div className="dropdown-options">
+                  <span className="dropdown-label">Explore integrations</span>
+                  {platformItems.map(({ label, copy, to, icon: Icon }) => (
+                    <NavLink className="dropdown-option" key={to} to={to}>
+                      <span className="dropdown-option-icon"><Icon /></span>
+                      <span><strong>{label}</strong><small>{copy}</small></span>
+                      <ArrowRight className="option-arrow" />
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div
+              className="nav-dropdown-wrap"
+              onMouseEnter={() => setDesktopMenu('tools')}
+              onMouseLeave={() => setDesktopMenu(null)}
+            >
+              <button
+                className={`nav-trigger ${['/weight-calculator', '/rate-calculator'].includes(pathname) ? 'active' : ''}`}
+                type="button"
+                aria-expanded={desktopMenu === 'tools'}
+                aria-controls="tools-menu"
+                onClick={() => setDesktopMenu('tools')}
+              >
+                Tools <ChevronDown />
+              </button>
+              <div
+                id="tools-menu"
+                className={`nav-dropdown tools-dropdown ${desktopMenu === 'tools' ? 'open' : ''}`}
+              >
+                <div className="dropdown-heading">
+                  <span>FREE SHIPPING TOOLS</span>
+                  <strong>Plan every shipment with confidence.</strong>
+                </div>
+                <div className="tool-dropdown-grid">
+                  {toolItems.map(({ label, copy, to, icon: Icon }) => (
+                    <NavLink className="tool-dropdown-card" key={to} to={to}>
+                      <span className="dropdown-option-icon"><Icon /></span>
+                      <span><strong>{label}</strong><small>{copy}</small></span>
+                      <ArrowRight className="option-arrow" />
+                    </NavLink>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <NavLink to="/blogs">Blogs</NavLink>
+            <NavLink to="/tracking">Track Shipment</NavLink>
           </nav>
           <div className="nav-actions">
             <Link className="button primary small" to="/rate-calculator">Calculate rate</Link>
-            <button className="menu-button" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            <button
+              className="menu-button"
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+              aria-expanded={open}
+            >
               {open ? <X /> : <Menu />}
             </button>
           </div>
         </div>
         {open && (
           <div className="mobile-menu">
-            {nav.map(([label, to]) => <NavLink key={to} to={to} onClick={() => setOpen(false)}>{label}</NavLink>)}
+            <button
+              className="mobile-group-trigger"
+              type="button"
+              onClick={() => toggleMobileGroup('platform')}
+              aria-expanded={mobileGroup === 'platform'}
+            >
+              Platform <ChevronDown />
+            </button>
+            {mobileGroup === 'platform' && (
+              <div className="mobile-submenu">
+                <span className="mobile-submenu-title">Integrations <ChevronRight /></span>
+                {platformItems.map(({ label, to, icon: Icon }) => (
+                  <NavLink key={to} to={to}><Icon /> {label}</NavLink>
+                ))}
+              </div>
+            )}
+            <button
+              className="mobile-group-trigger"
+              type="button"
+              onClick={() => toggleMobileGroup('tools')}
+              aria-expanded={mobileGroup === 'tools'}
+            >
+              Tools <ChevronDown />
+            </button>
+            {mobileGroup === 'tools' && (
+              <div className="mobile-submenu mobile-tools">
+                {toolItems.map(({ label, to, icon: Icon }) => (
+                  <NavLink key={to} to={to}><Icon /> {label}</NavLink>
+                ))}
+              </div>
+            )}
+            <NavLink to="/blogs">Blogs</NavLink>
+            <NavLink to="/tracking">Track Shipment</NavLink>
             <Link className="button primary" to="/rate-calculator" onClick={() => setOpen(false)}>Calculate rate</Link>
           </div>
         )}
@@ -378,6 +541,117 @@ function StandardPage({ type }) {
   )
 }
 
+const explorePages = {
+  integrations: {
+    eyebrow: 'SHIPRAY PLATFORM',
+    title: 'Connect your commerce stack to one shipping workflow.',
+    copy: 'Sync orders from the places you sell and fulfil them through the courier network that fits each shipment.',
+    icon: PlugZap,
+    cards: [
+      ['Sales Channels', 'Bring storefront and marketplace orders into one organised dispatch queue.', ShoppingBag, '/integrations/sales-channels', 'Explore channels'],
+      ['Courier Partners', 'Compare serviceability, speed and pricing across a flexible delivery network.', Truck, '/integrations/courier-partners', 'Explore couriers'],
+    ],
+  },
+  salesChannels: {
+    eyebrow: 'SALES CHANNEL INTEGRATIONS',
+    title: 'All your orders. One place to ship.',
+    copy: 'Connect the channels your customers already use, reduce repetitive order entry and keep fulfilment status aligned.',
+    icon: ShoppingBag,
+    cards: [
+      ['Online storefronts', 'Connect popular hosted storefronts and pull ready-to-ship orders into Shipray.', Store],
+      ['Marketplaces', 'Organise multi-marketplace orders without switching between separate seller panels.', ShoppingBag],
+      ['Social commerce', 'Turn social and conversational orders into a consistent shipping workflow.', Globe2],
+      ['Custom websites', 'Connect a custom checkout or order system through secure APIs and webhooks.', Code2],
+      ['OMS and ERP', 'Keep order, inventory and shipment events aligned with your operations stack.', Warehouse],
+      ['Status synchronisation', 'Send AWB, pickup and delivery milestones back to the originating channel.', RefreshCcw],
+    ],
+  },
+  courierPartners: {
+    eyebrow: 'COURIER PARTNER NETWORK',
+    title: 'Choose the right delivery partner for every parcel.',
+    copy: 'Use route, shipment and service-level signals to select a courier without being locked into a single network.',
+    icon: Truck,
+    cards: [
+      ['Express delivery', 'Prioritise faster movement for time-sensitive business and customer orders.', Zap],
+      ['Surface shipping', 'Balance cost and transit time for regular domestic parcel movement.', Truck],
+      ['Air cargo', 'Move urgent and long-distance shipments through air-enabled services.', Plane],
+      ['Wide serviceability', 'Reach metro, tier 2, tier 3 and remote delivery locations across India.', MapPin],
+      ['Shipment security', 'Use scan-led milestones and consistent handover processes for better control.', ShieldCheck],
+      ['Exception visibility', 'Identify stuck pickups and delayed movement while there is still time to act.', PackageSearch],
+    ],
+  },
+  blogs: {
+    eyebrow: 'SHIPRAY RESOURCES',
+    title: 'Practical ideas for faster, clearer shipping.',
+    copy: 'Guides for ecommerce teams that want to control delivery costs, choose couriers confidently and improve customer experience.',
+    icon: BookOpen,
+    cards: [
+      ['How to calculate volumetric weight correctly', 'Understand why parcel dimensions affect shipping charges and avoid billing surprises.', Scale, null, '6 min read'],
+      ['A better way to compare courier partners', 'Evaluate serviceability, delivery speed, support and total cost before choosing a carrier.', Truck, null, '8 min read'],
+      ['Shipping rate calculation for growing stores', 'Learn which shipment details matter when estimating domestic courier charges.', BadgeIndianRupee, null, '7 min read'],
+      ['Reduce failed deliveries with clearer tracking', 'Use useful milestone updates to keep customers informed before delivery day.', LocateFixed, null, '5 min read'],
+      ['Preparing ecommerce orders for dispatch', 'Build a repeatable packing and handover checklist for busy fulfilment teams.', Box, null, '6 min read'],
+      ['When to use surface shipping or air shipping', 'Compare cost, distance and urgency to select the right transport mode.', Plane, null, '7 min read'],
+    ],
+  },
+}
+
+function ExplorePage({ type }) {
+  const data = explorePages[type]
+  const Icon = data.icon
+  return (
+    <>
+      <section className="explore-hero">
+        <div className="explore-glow" />
+        <div className="shell explore-hero-grid">
+          <div>
+            <span className="eyebrow"><Icon size={17} /> {data.eyebrow}</span>
+            <h1>{data.title}</h1>
+            <p>{data.copy}</p>
+            <div className="hero-actions">
+              <Link className="button primary" to="/rate-calculator">Calculate shipping rate <ArrowRight size={17} /></Link>
+              <Link className="button ghost" to="/tracking">Track a shipment</Link>
+            </div>
+          </div>
+          <div className="explore-visual" aria-hidden="true">
+            <div className="integration-orbit orbit-one" />
+            <div className="integration-orbit orbit-two" />
+            <span className="integration-core"><Icon /></span>
+            <span className="integration-node node-store"><Store /></span>
+            <span className="integration-node node-truck"><Truck /></span>
+            <span className="integration-node node-box"><Box /></span>
+            <span className="integration-node node-route"><Route /></span>
+          </div>
+        </div>
+      </section>
+      <section className={`explore-content ${type === 'integrations' ? 'compact-catalogue' : ''}`}>
+        <div className="shell">
+          <div className="explore-section-head">
+            <span>{type === 'blogs' ? 'LATEST GUIDES' : 'BUILT FOR CONNECTED COMMERCE'}</span>
+            <h2>{type === 'blogs' ? 'Make every shipping decision count.' : 'Everything stays connected as you grow.'}</h2>
+          </div>
+          <div className="explore-card-grid">
+            {data.cards.map(([title, copy, CardIcon, to, meta]) => {
+              const cardContent = (
+                <>
+                  <span className="explore-card-icon"><CardIcon /></span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                  <span className="explore-card-action">{meta || (to ? 'Explore' : 'Shipray capability')} {to && <ArrowRight size={15} />}</span>
+                </>
+              )
+              return to
+                ? <Link className="explore-card" key={title} to={to}>{cardContent}</Link>
+                : <article className="explore-card" key={title}>{cardContent}</article>
+            })}
+          </div>
+        </div>
+      </section>
+      <FinalCta />
+    </>
+  )
+}
+
 function ToolIntro({ eyebrow, icon: Icon, title, copy, image, imageAlt, bullets }) {
   return (
     <div className="tool-intro">
@@ -569,8 +843,12 @@ export default function App() {
       <main>
         <Routes>
           <RouterRoute path="/" element={<Home />} />
+          <RouterRoute path="/integrations" element={<ExplorePage type="integrations" />} />
+          <RouterRoute path="/integrations/sales-channels" element={<ExplorePage type="salesChannels" />} />
+          <RouterRoute path="/integrations/courier-partners" element={<ExplorePage type="courierPartners" />} />
           <RouterRoute path="/weight-calculator" element={<WeightCalculator />} />
           <RouterRoute path="/rate-calculator" element={<RateCalculator />} />
+          <RouterRoute path="/blogs" element={<ExplorePage type="blogs" />} />
           <RouterRoute path="/tracking" element={<Tracking />} />
           <RouterRoute path="*" element={<Home />} />
         </Routes>
