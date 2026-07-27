@@ -475,7 +475,7 @@ const heroSlides = [
     secondaryTo: '/tracking',
     secondaryIcon: LocateFixed,
     note: 'No setup fee · No minimum commitment',
-    image: '/assets/shipray-3d-logistics-hero.png',
+    image: '/assets/shipray-network-studio.jpg',
     imageAlt: 'Shipray connected logistics network',
     kind: 'network',
     tone: 'violet',
@@ -494,9 +494,9 @@ const heroSlides = [
     secondaryTo: '/integrations/courier-partners',
     secondaryIcon: Route,
     note: 'Flexible courier choice · Clear serviceability',
-    image: '/assets/shipray-hero-courier.jpg',
-    imageAlt: 'Shipray courier team handling domestic parcels',
-    kind: 'photo',
+    image: '/assets/shipray-india-reach.jpg',
+    imageAlt: 'Connected domestic parcel routes across India',
+    kind: 'illustration',
     tone: 'amber',
     firstCard: { icon: MapPin, label: 'Serviceable reach', value: '29,000+ pin codes', badge: 'Live' },
     secondCard: { icon: Route, label: 'Route planning', value: 'Courier matched', badge: 'Fast' },
@@ -513,8 +513,8 @@ const heroSlides = [
     secondaryTo: '/integrations',
     secondaryIcon: Search,
     note: 'Live milestones · Customer-ready updates',
-    image: '/assets/shipray-tracking.png',
-    imageAlt: 'Shipray live tracking interface',
+    image: '/assets/shipray-tracking-mobile.jpg',
+    imageAlt: 'Mobile shipment timeline connected to a parcel and delivery route',
     kind: 'ui',
     tone: 'cyan',
     firstCard: { icon: LocateFixed, label: 'Latest milestone', value: 'Out for delivery', badge: 'Live' },
@@ -532,8 +532,8 @@ const heroSlides = [
     secondaryTo: '/weight-calculator',
     secondaryIcon: Scale,
     note: 'Quick estimates · Practical weight guidance',
-    image: '/assets/shipray-rate-calculator.png',
-    imageAlt: 'Shipray shipping rate calculator interface',
+    image: '/assets/shipray-rate-studio.jpg',
+    imageAlt: 'Shipping rate comparison dashboard with parcels and route markers',
     kind: 'ui',
     tone: 'pink',
     firstCard: { icon: BadgeIndianRupee, label: 'Rate estimate', value: 'Ready to compare', badge: 'New' },
@@ -577,7 +577,7 @@ function Hero() {
         </div>
         <div className={`hero-art hero-art-${slide.kind}`}>
           <div className="hero-orbit" />
-          <img src={slide.image} alt={slide.imageAlt} />
+          <img src={slide.image} alt={slide.imageAlt} fetchPriority={activeSlide === 0 ? 'high' : 'auto'} decoding="async" />
           <div className="float-card pickup">
             <span className="mini-icon"><FirstCardIcon size={20} /></span>
             <div><small>{slide.firstCard.label}</small><strong>{slide.firstCard.value}</strong></div>
@@ -774,8 +774,8 @@ const demoProducts = [
     tab: 'Smart Booking',
     title: 'Book the right courier in minutes',
     copy: 'Enter pickup, delivery and parcel details once. Shipray compares suitable delivery options and keeps the booking workflow clear from start to finish.',
-    image: '/assets/shipray-warehouse-operations.jpg',
-    imageAlt: 'Shipray warehouse team preparing ecommerce shipments',
+    image: '/assets/shipray-smart-booking.jpg',
+    imageAlt: 'Courier booking workspace with parcels and a label printer',
     to: '/rate-calculator',
     cta: 'Try rate calculator',
     tone: 'violet',
@@ -784,8 +784,8 @@ const demoProducts = [
     tab: 'Shipping',
     title: 'Ship every order from one workspace',
     copy: 'Move domestic parcels through a consistent process with chargeable-weight guidance, route-level estimates and organised shipment milestones.',
-    image: '/assets/shipray-hero-courier.jpg',
-    imageAlt: 'Courier team packing and processing customer orders',
+    image: '/assets/shipray-automated-shipping.jpg',
+    imageAlt: 'Automated parcel sorting and shipping workspace',
     to: '/weight-calculator',
     cta: 'Estimate weight',
     tone: 'amber',
@@ -794,8 +794,8 @@ const demoProducts = [
     tab: 'Live Tracking',
     title: 'See delivery progress without the guesswork',
     copy: 'Follow shipment events in one readable timeline and identify the latest courier scan before customers need to ask for an update.',
-    image: '/assets/shipray-tracking.png',
-    imageAlt: 'Shipray live shipment tracking interface',
+    image: '/assets/shipray-control-tower.jpg',
+    imageAlt: 'Live logistics control tower with an India shipment map',
     to: '/tracking',
     cta: 'Track shipment',
     tone: 'cyan',
@@ -835,7 +835,7 @@ function LiveDemos() {
             <Link className="button primary" to={demo.to}>{demo.cta} <ArrowRight size={17} /></Link>
           </div>
           <div className="demo-media">
-            <img src={demo.image} alt={demo.imageAlt} />
+            <img src={demo.image} alt={demo.imageAlt} loading="lazy" decoding="async" />
             <div className="demo-status">
               <CircleCheck />
               <span><small>Shipray workflow</small><strong>Ready to use</strong></span>
@@ -852,36 +852,36 @@ const coreStrengths = [
     metric: '50K+',
     title: 'growing businesses',
     copy: 'Shipping with clearer operations',
-    image: '/assets/shipray-warehouse-operations.jpg',
-    alt: 'Warehouse operations supporting growing shipping businesses',
+    art: 'commerce',
+    icon: Store,
   },
   {
     metric: '29,000+',
     title: 'serviceable pin codes',
     copy: 'Domestic reach across India',
-    image: '/assets/shipray-hero-courier.jpg',
-    alt: 'Courier team processing parcels for nationwide delivery',
+    art: 'reach',
+    icon: MapPin,
   },
   {
     metric: '220+',
     title: 'countries and territories',
     copy: 'Connected cross-border possibilities',
-    image: '/assets/shipray-3d-logistics-hero.png',
-    alt: 'Connected global Shipray logistics network',
+    art: 'global',
+    icon: Globe2,
   },
   {
     metric: '100+',
     title: 'courier options',
     copy: 'Flexible partners for every route',
-    image: '/assets/shipray-tracking.png',
-    alt: 'Courier network and shipment tracking view',
+    art: 'partners',
+    icon: Truck,
   },
   {
     metric: '99.2%',
     title: 'platform uptime',
     copy: 'Reliable tools when teams need them',
-    image: '/assets/shipray-rate-calculator.png',
-    alt: 'Shipray shipping rate calculation interface',
+    art: 'uptime',
+    icon: BarChart3,
   },
 ]
 
@@ -902,13 +902,23 @@ function CoreStrengths() {
         </div>
       </div>
       <div className="strength-track" ref={trackRef}>
-        {coreStrengths.map((item) => (
-          <article className="strength-card" key={item.metric}>
-            <h3><strong>{item.metric}</strong> {item.title}</h3>
-            <p>{item.copy}</p>
-            <div className="strength-media"><img src={item.image} alt={item.alt} /></div>
-          </article>
-        ))}
+        {coreStrengths.map((item) => {
+          const ArtIcon = item.icon
+          return (
+            <article className="strength-card" key={item.metric}>
+              <h3><strong>{item.metric}</strong> {item.title}</h3>
+              <p>{item.copy}</p>
+              <div className={`strength-media strength-art strength-art-${item.art}`} aria-hidden="true">
+                <div className="strength-art-grid" />
+                <span className="strength-art-main"><ArtIcon /></span>
+                <span className="strength-art-node node-a"><PackageCheck /></span>
+                <span className="strength-art-node node-b"><Route /></span>
+                <span className="strength-art-node node-c"><CircleCheck /></span>
+                <div className="strength-art-route"><i /><i /><i /><i /></div>
+              </div>
+            </article>
+          )
+        })}
       </div>
     </section>
   )
@@ -938,7 +948,8 @@ const sellerStories = [
     copy: 'Shipray helped this fast-growing wellness brand replace scattered courier screens with a consistent dispatch process. The result is quicker handoffs and fewer status follow-ups.',
     metric: '31%',
     metricLabel: 'faster daily dispatch',
-    image: '/assets/shipray-warehouse-operations.jpg',
+    visual: 'dispatch',
+    icon: PackageCheck,
     tone: 'violet',
   },
   {
@@ -948,7 +959,8 @@ const sellerStories = [
     copy: 'With weight guidance and practical courier comparisons, Urban Loom can plan every parcel around speed, serviceability and cost without slowing down fulfilment.',
     metric: '24%',
     metricLabel: 'lower exception rate',
-    image: '/assets/shipray-hero-courier.jpg',
+    visual: 'routes',
+    icon: Route,
     tone: 'amber',
   },
   {
@@ -958,7 +970,8 @@ const sellerStories = [
     copy: 'A single milestone view gives the team the latest shipment context before a customer asks, while keeping post-purchase communication calm and consistent.',
     metric: '42%',
     metricLabel: 'fewer tracking queries',
-    image: '/assets/shipray-tracking.png',
+    visual: 'updates',
+    icon: LocateFixed,
     tone: 'cyan',
   },
   {
@@ -968,7 +981,8 @@ const sellerStories = [
     copy: 'Shipray gives Rooted Earth a repeatable booking flow that supports wider reach while keeping parcel checks and route decisions easy for the operations team.',
     metric: '18K+',
     metricLabel: 'pin codes explored',
-    image: '/assets/shipray-3d-logistics-hero.png',
+    visual: 'reach',
+    icon: Globe2,
     tone: 'lime',
   },
   {
@@ -978,7 +992,8 @@ const sellerStories = [
     copy: 'Organised shipment milestones and quick rate estimates let Atelier Nine spend less time reconciling tools and more time improving the customer experience.',
     metric: '2.3×',
     metricLabel: 'orders handled per day',
-    image: '/assets/shipray-rate-calculator.png',
+    visual: 'scale',
+    icon: BarChart3,
     tone: 'pink',
   },
 ]
@@ -986,6 +1001,7 @@ const sellerStories = [
 function SellerStories() {
   const [activeStory, setActiveStory] = useState(0)
   const story = sellerStories[activeStory]
+  const StoryIcon = story.icon
   const marqueePartners = [...courierPartners, ...courierPartners]
   const reversePartners = [...courierPartners.slice(6), ...courierPartners.slice(0, 6), ...courierPartners]
 
@@ -1035,8 +1051,16 @@ function SellerStories() {
               <span>{story.metricLabel}</span>
             </div>
           </div>
-          <div className="seller-story-visual">
-            <img src={story.image} alt={`${story.brand} shipping workflow with Shipray`} />
+          <div className={`seller-story-visual story-product-art story-product-${story.visual}`} aria-label={`${story.brand} shipping workflow illustration`}>
+            <div className="story-art-grid" />
+            <div className="story-art-orbit orbit-a" />
+            <div className="story-art-orbit orbit-b" />
+            <span className="story-art-main"><StoryIcon /></span>
+            <span className="story-art-brand">{story.mark}</span>
+            <span className="story-art-node node-a"><PackageCheck /></span>
+            <span className="story-art-node node-b"><Truck /></span>
+            <span className="story-art-node node-c"><CircleCheck /></span>
+            <div className="story-art-route"><i /><i /><i /><i /></div>
             <div className="story-status">
               <CircleCheck />
               <span><small>Shipray impact</small><strong>Operations moving smoothly</strong></span>
@@ -1057,8 +1081,8 @@ const servicesPortfolio = [
   {
     title: 'Domestic Delivery',
     copy: 'Reach customers across India through one organised shipping flow. Compare suitable courier options, create orders in fewer steps and keep tracking updates easy to understand.',
-    image: '/assets/shipray-hero-courier.jpg',
-    alt: 'Shipray courier team preparing domestic deliveries',
+    image: '/assets/shipray-3d-logistics-hero.png',
+    alt: 'Connected domestic delivery network with parcels and vehicles',
     metric: '29,000+',
     metricLabel: 'serviceable pin codes',
     to: '/rate-calculator',
@@ -1069,8 +1093,8 @@ const servicesPortfolio = [
   {
     title: 'Fulfilment Network',
     copy: 'Keep inventory, packing and dispatch moving as one connected operation. Shipray gives growing teams a clearer path from a confirmed order to a pickup-ready parcel.',
-    image: '/assets/shipray-warehouse-operations.jpg',
-    alt: 'Warehouse operations supporting Shipray fulfilment',
+    image: '/assets/shipray-fulfilment-network.jpg',
+    alt: 'Automated fulfilment network with inventory and dispatch stations',
     metric: 'One flow',
     metricLabel: 'from shelf to shipment',
     to: '/integrations',
@@ -1081,8 +1105,8 @@ const servicesPortfolio = [
   {
     title: 'Quick Local Movement',
     copy: 'Handle urgent city deliveries with a focused booking experience designed for short routes. Enter parcel details once, review the estimate and keep every local handoff visible.',
-    image: '/assets/shipray-3d-logistics-hero.png',
-    alt: 'Connected Shipray local delivery network',
+    image: '/assets/shipray-local-delivery.jpg',
+    alt: 'Fast local delivery routes across a compact city',
     metric: 'Same day',
     metricLabel: 'local delivery planning',
     to: '/rate-calculator',
@@ -1093,8 +1117,8 @@ const servicesPortfolio = [
   {
     title: 'Cross-Border Growth',
     copy: 'Build a repeatable export workflow with route guidance, shipment visibility and support for international expansion. Move from the first overseas order to wider global reach with confidence.',
-    image: '/assets/shipray-hero-courier.png',
-    alt: 'Shipray international courier delivery',
+    image: '/assets/shipray-cross-border.jpg',
+    alt: 'Cross-border delivery network by air, sea and road',
     metric: '220+',
     metricLabel: 'countries and territories',
     to: '/integrations/courier-partners',
@@ -1105,8 +1129,7 @@ const servicesPortfolio = [
   {
     title: 'Smooth Checkout',
     copy: 'Give shoppers a faster path from cart to confirmed order. Clear delivery choices and fewer unnecessary steps help brands build a calmer, more dependable buying experience.',
-    image: '/assets/shipray-rate-calculator.png',
-    alt: 'Shipray rate and delivery choice interface',
+    art: 'checkout',
     metric: 'Fewer steps',
     metricLabel: 'from cart to confirmation',
     to: '/rate-calculator',
@@ -1117,8 +1140,7 @@ const servicesPortfolio = [
   {
     title: 'Seller Connect',
     copy: 'Keep customers informed with useful shipment context at the right moment. A readable tracking journey helps support teams answer questions quickly and keeps buyers engaged after checkout.',
-    image: '/assets/shipray-tracking.png',
-    alt: 'Shipray customer shipment tracking interface',
+    art: 'connect',
     metric: 'Live status',
     metricLabel: 'through every milestone',
     to: '/tracking',
@@ -1152,7 +1174,23 @@ function ServicesPortfolio() {
                 </div>
                 <div className={`portfolio-visual visual-${service.kind}`}>
                   <div className="portfolio-grid-lines" />
-                  <img src={service.image} alt={service.alt} />
+                  {service.image ? (
+                    <img src={service.image} alt={service.alt} loading="lazy" decoding="async" />
+                  ) : (
+                    <div className={`portfolio-product-art product-art-${service.art}`} aria-hidden="true">
+                      <div className="product-device">
+                        <div className="product-device-head"><i /><i /><i /></div>
+                        <span className="product-device-title" />
+                        <div className="product-device-row"><i /><b /></div>
+                        <div className="product-device-row"><i /><b /></div>
+                        <div className="product-device-row"><i /><b /></div>
+                        <span className="product-device-action" />
+                      </div>
+                      <span className="product-art-icon"><Icon /></span>
+                      <span className="product-art-parcel"><Box /></span>
+                      <div className="product-art-path"><i /><i /><i /></div>
+                    </div>
+                  )}
                   <div className="portfolio-metric">
                     <small>Shipray advantage</small>
                     <strong>{service.metric}</strong>
@@ -1217,7 +1255,7 @@ function InnerHero({ data }) {
       <div className="inner-glow" />
       <div className="shell inner-grid">
         <div><span className="eyebrow"><Icon size={17} /> {data.eyebrow}</span><h1>{data.title}</h1><p>{data.copy}</p><div className="hero-actions"><Link className="button primary" to="/pricing">Get started <ArrowRight size={17} /></Link><Link className="button ghost" to="/contact">Talk to our team</Link></div></div>
-        <div className="inner-art"><img src="/assets/shipray-hero-courier.png" alt="" /><div className="inner-status"><CircleCheck /><div><small>Shipray network</small><strong>Ready to deliver</strong></div></div></div>
+        <div className="inner-art inner-product-art" aria-hidden="true"><span className="inner-product-core"><PackageCheck /></span><span className="inner-product-node node-a"><Truck /></span><span className="inner-product-node node-b"><Route /></span><span className="inner-product-node node-c"><CircleCheck /></span><div className="inner-status"><CircleCheck /><div><small>Shipray network</small><strong>Ready to deliver</strong></div></div></div>
       </div>
     </section>
   )
@@ -1354,7 +1392,7 @@ function ToolIntro({ eyebrow, icon: Icon, title, copy, image, imageAlt, bullets 
       <ul className="feature-list">
         {bullets.map(item => <li key={item}><Check /> {item}</li>)}
       </ul>
-      <div className="tool-image"><img src={image} alt={imageAlt} /></div>
+      <div className="tool-image"><img src={image} alt={imageAlt} decoding="async" /></div>
     </div>
   )
 }
@@ -1491,7 +1529,7 @@ function Tracking() {
           </form>
           <div className="tracking-assurance"><span><CircleCheck /> One clear timeline</span><span><CircleCheck /> Courier-wide visibility</span></div>
         </div>
-        <div className="tracking-art"><img src="/assets/shipray-tracking.png" alt="Smartphone, parcel and delivery van showing a shipment journey" /></div>
+        <div className="tracking-art"><img src="/assets/shipray-tracking.png" alt="Smartphone, parcel and delivery van showing a shipment journey" decoding="async" /></div>
       </div>
       {searched && <div className="shell tracking-result live-result"><div className="track-head"><div><small>Shipment ID</small><strong>{awb.trim().toUpperCase()}</strong></div><span><Truck /> In transit</span></div><div className="shipment-meta"><div><small>Current location</small><b>Delhi sorting facility</b></div><div><small>Expected delivery</small><b>Tomorrow, by 8 PM</b></div><div><small>Service</small><b>Shipray Express</b></div></div><div className="timeline">{milestones.map((item, index) => <div className={index < 3 ? 'done' : ''} key={item}><i>{index < 3 ? <Check /> : index + 1}</i><span>{item}</span></div>)}</div><p>Preview status shown for this demo. Connect the live tracking API to display real courier events.</p></div>}
       <ToolSteps items={[['01', 'Enter your ID', 'Use the AWB or order ID shared at dispatch.'], ['02', 'Read the milestone', 'See the latest scan in a consistent timeline.'], ['03', 'Plan the next step', 'Know when to wait and when a shipment needs attention.']]} />
