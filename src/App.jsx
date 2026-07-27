@@ -889,7 +889,7 @@ const demoProducts = [
 ]
 
 function LiveDemos() {
-  const [activeDemo, setActiveDemo] = useState(0)
+  const [activeDemo, setActiveDemo] = useState(1)
   const demo = demoProducts[activeDemo]
   return (
     <section className="live-demos">
