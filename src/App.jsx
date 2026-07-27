@@ -1088,7 +1088,7 @@ const servicesPortfolio = [
     to: '/rate-calculator',
     cta: 'Plan a domestic shipment',
     icon: Truck,
-    kind: 'photo',
+    kind: 'illustration',
   },
   {
     title: 'Fulfilment Network',
@@ -1100,7 +1100,7 @@ const servicesPortfolio = [
     to: '/integrations',
     cta: 'Explore fulfilment tools',
     icon: Warehouse,
-    kind: 'photo',
+    kind: 'illustration',
   },
   {
     title: 'Quick Local Movement',
