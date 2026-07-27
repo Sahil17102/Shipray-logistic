@@ -435,7 +435,7 @@ img { max-width: 100%; }
 .stats-section { padding: 70px 0; color: #fff; background: #111; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 .stats-grid div { padding: 15px 34px; border-right: 1px solid #343434; }.stats-grid div:last-child { border: 0; }
-.stats-grid strong, .stats-grid span { display: block; }.stats-grid strong { font-size: 38px; letter-spacing: -2px; }.stats-grid span { margin-top: 5px; color: #aeadb2; font-size: 11px; }
+.stats-grid strong, .stats-grid span { display: block; }.stats-grid strong { font-size: 38px; font-variant-numeric: tabular-nums; letter-spacing: -2px; }.stats-grid span { margin-top: 5px; color: #aeadb2; font-size: 11px; }
 .center-heading { max-width: 760px; margin: 0 auto 52px; text-align: center; }.center-heading .section-label { margin-bottom: 16px; }
 .business-section { background: #f7f7f9; }
 .business-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
