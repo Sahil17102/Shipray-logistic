@@ -223,8 +223,30 @@ function Header() {
   const [open, setOpen] = useState(false)
   const [desktopMenu, setDesktopMenu] = useState(null)
   const [mobileGroup, setMobileGroup] = useState(null)
+  const [isScrolled, setIsScrolled] = useState(false)
   const headerRef = useRef(null)
   const { pathname } = useLocation()
+
+  useEffect(() => {
+    let frameId = null
+
+    const updateHeader = () => {
+      setIsScrolled(window.scrollY > 24)
+      frameId = null
+    }
+
+    const handleScroll = () => {
+      if (frameId === null) frameId = window.requestAnimationFrame(updateHeader)
+    }
+
+    updateHeader()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+    }
+  }, [])
 
   useEffect(() => {
     setOpen(false)
@@ -259,7 +281,7 @@ function Header() {
   }
 
   return (
-    <header className="site-nav" ref={headerRef}>
+    <header className={`site-nav ${isScrolled ? 'is-scrolled' : ''}`} ref={headerRef}>
       <div className="nav-inner">
         <Link to="/" className="brand" aria-label="Shipray home">
           <img src="/assets/shipray-logo.svg" alt="Shipray Logistics" />
