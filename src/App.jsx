@@ -689,7 +689,15 @@ function RollingCards() {
         {products.map((product, index) => {
           const Icon = product.icon
           return (
-            <article className={`stack-card bg-gradient-to-br ${product.gradient}`} style={{ '--stack-offset': `${120 + index * 12}px` }} key={product.title}>
+            <article
+              className={`stack-card bg-gradient-to-br ${product.gradient}`}
+              style={{
+                '--stack-offset': `${120 + index * 12}px`,
+                '--mobile-stack-offset': `${80 + index * 7}px`,
+                '--stack-layer': index + 1,
+              }}
+              key={product.title}
+            >
               <div className="stack-copy">
                 <span className="card-kicker">{product.kicker}</span>
                 <span className="feature-icon"><Icon /></span>
