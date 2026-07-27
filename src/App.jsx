@@ -818,8 +818,123 @@ function SellerStories() {
   )
 }
 
+const servicesPortfolio = [
+  {
+    title: 'Domestic Delivery',
+    copy: 'Reach customers across India through one organised shipping flow. Compare suitable courier options, create orders in fewer steps and keep tracking updates easy to understand.',
+    image: '/assets/shipray-hero-courier.jpg',
+    alt: 'Shipray courier team preparing domestic deliveries',
+    metric: '29,000+',
+    metricLabel: 'serviceable pin codes',
+    to: '/rate-calculator',
+    cta: 'Plan a domestic shipment',
+    icon: Truck,
+    kind: 'photo',
+  },
+  {
+    title: 'Fulfilment Network',
+    copy: 'Keep inventory, packing and dispatch moving as one connected operation. Shipray gives growing teams a clearer path from a confirmed order to a pickup-ready parcel.',
+    image: '/assets/shipray-warehouse-operations.jpg',
+    alt: 'Warehouse operations supporting Shipray fulfilment',
+    metric: 'One flow',
+    metricLabel: 'from shelf to shipment',
+    to: '/integrations',
+    cta: 'Explore fulfilment tools',
+    icon: Warehouse,
+    kind: 'photo',
+  },
+  {
+    title: 'Quick Local Movement',
+    copy: 'Handle urgent city deliveries with a focused booking experience designed for short routes. Enter parcel details once, review the estimate and keep every local handoff visible.',
+    image: '/assets/shipray-3d-logistics-hero.png',
+    alt: 'Connected Shipray local delivery network',
+    metric: 'Same day',
+    metricLabel: 'local delivery planning',
+    to: '/rate-calculator',
+    cta: 'Estimate a local route',
+    icon: LocateFixed,
+    kind: 'illustration',
+  },
+  {
+    title: 'Cross-Border Growth',
+    copy: 'Build a repeatable export workflow with route guidance, shipment visibility and support for international expansion. Move from the first overseas order to wider global reach with confidence.',
+    image: '/assets/shipray-hero-courier.png',
+    alt: 'Shipray international courier delivery',
+    metric: '220+',
+    metricLabel: 'countries and territories',
+    to: '/integrations/courier-partners',
+    cta: 'Explore global shipping',
+    icon: Globe2,
+    kind: 'illustration',
+  },
+  {
+    title: 'Smooth Checkout',
+    copy: 'Give shoppers a faster path from cart to confirmed order. Clear delivery choices and fewer unnecessary steps help brands build a calmer, more dependable buying experience.',
+    image: '/assets/shipray-rate-calculator.png',
+    alt: 'Shipray rate and delivery choice interface',
+    metric: 'Fewer steps',
+    metricLabel: 'from cart to confirmation',
+    to: '/rate-calculator',
+    cta: 'Try the rate experience',
+    icon: ShoppingBag,
+    kind: 'ui',
+  },
+  {
+    title: 'Seller Connect',
+    copy: 'Keep customers informed with useful shipment context at the right moment. A readable tracking journey helps support teams answer questions quickly and keeps buyers engaged after checkout.',
+    image: '/assets/shipray-tracking.png',
+    alt: 'Shipray customer shipment tracking interface',
+    metric: 'Live status',
+    metricLabel: 'through every milestone',
+    to: '/tracking',
+    cta: 'See live tracking',
+    icon: Mail,
+    kind: 'ui',
+  },
+]
+
+function ServicesPortfolio() {
+  return (
+    <section className="services-portfolio">
+      <div className="shell">
+        <div className="portfolio-heading">
+          <span className="section-label">THE SHIPRAY PORTFOLIO</span>
+          <h2>Our Services<br /><span>&amp; Solutions Portfolio</span></h2>
+          <p>Practical logistics capabilities for every stage of a growing commerce journey.</p>
+        </div>
+
+        <div className="portfolio-list">
+          {servicesPortfolio.map((service, index) => {
+            const Icon = service.icon
+            return (
+              <article className={`portfolio-row ${index % 2 ? 'portfolio-reverse' : ''}`} key={service.title}>
+                <div className="portfolio-copy">
+                  <span className="portfolio-index">0{index + 1}</span>
+                  <span className="portfolio-icon"><Icon /></span>
+                  <h3>{service.title}</h3>
+                  <p>{service.copy}</p>
+                  <Link to={service.to}>{service.cta} <ArrowRight /></Link>
+                </div>
+                <div className={`portfolio-visual visual-${service.kind}`}>
+                  <div className="portfolio-grid-lines" />
+                  <img src={service.image} alt={service.alt} />
+                  <div className="portfolio-metric">
+                    <small>Shipray advantage</small>
+                    <strong>{service.metric}</strong>
+                    <span>{service.metricLabel}</span>
+                  </div>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Home() {
-  return <><Hero /><TrustRail /><RollingCards /><LiveDemos /><CoreStrengths /><SellerStories /><Solutions /><Stats /><BusinessTypes /><DeveloperBand /><FinalCta /></>
+  return <><Hero /><TrustRail /><RollingCards /><LiveDemos /><CoreStrengths /><SellerStories /><ServicesPortfolio /><Solutions /><Stats /><BusinessTypes /><DeveloperBand /><FinalCta /></>
 }
 
 const pageData = {
