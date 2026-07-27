@@ -739,15 +739,71 @@ function Solutions() {
 }
 
 function Stats() {
+  const sectionRef = useRef(null)
+  const [countProgress, setCountProgress] = useState(0)
+  const [shouldCount, setShouldCount] = useState(false)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCountProgress(1)
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return
+      setShouldCount(true)
+      observer.disconnect()
+    }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' })
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!shouldCount) return undefined
+
+    const duration = 650
+    let frameId = null
+    let startedAt = null
+
+    const animate = (timestamp) => {
+      if (startedAt === null) startedAt = timestamp
+      const elapsed = Math.min((timestamp - startedAt) / duration, 1)
+      const eased = 1 - ((1 - elapsed) ** 3)
+      setCountProgress(eased)
+
+      if (elapsed < 1) frameId = window.requestAnimationFrame(animate)
+    }
+
+    frameId = window.requestAnimationFrame(animate)
+    return () => {
+      if (frameId !== null) window.cancelAnimationFrame(frameId)
+    }
+  }, [shouldCount])
+
+  const stats = [
+    { value: 50, suffix: 'K+', label: 'businesses shipping' },
+    { value: 29, suffix: 'K+', label: 'serviceable pin codes' },
+    { value: 100, suffix: '+', label: 'courier options' },
+    { value: 99.2, suffix: '%', decimals: 1, label: 'platform uptime' },
+  ]
+
   return (
-    <section className="stats-section">
+    <section className="stats-section" ref={sectionRef}>
       <div className="shell stats-grid">
-        {[
-          ['50K+', 'businesses shipping'],
-          ['29K+', 'serviceable pin codes'],
-          ['100+', 'courier options'],
-          ['99.2%', 'platform uptime'],
-        ].map(([num, label]) => <div key={label}><strong>{num}</strong><span>{label}</span></div>)}
+        {stats.map(({ value, suffix, decimals = 0, label }) => {
+          const currentValue = value * countProgress
+          const displayValue = decimals
+            ? currentValue.toFixed(decimals).replace(/\.0$/, '')
+            : Math.round(currentValue)
+
+          return (
+            <div key={label}>
+              <strong aria-label={`${value}${suffix}`}>{displayValue}{suffix}</strong>
+              <span>{label}</span>
+            </div>
+          )
+        })}
       </div>
     </section>
   )
