@@ -852,36 +852,36 @@ const coreStrengths = [
     metric: '50K+',
     title: 'growing businesses',
     copy: 'Shipping with clearer operations',
-    art: 'commerce',
-    icon: Store,
+    image: '/assets/shipray-strength-businesses.jpg',
+    alt: 'Connected ecommerce businesses growing with organised shipping',
   },
   {
     metric: '29,000+',
     title: 'serviceable pin codes',
     copy: 'Domestic reach across India',
-    art: 'reach',
-    icon: MapPin,
+    image: '/assets/shipray-strength-india.jpg',
+    alt: 'Dense parcel delivery network connecting locations across India',
   },
   {
     metric: '220+',
     title: 'countries and territories',
     copy: 'Connected cross-border possibilities',
-    art: 'global',
-    icon: Globe2,
+    image: '/assets/shipray-strength-global.jpg',
+    alt: 'Global air and sea logistics routes surrounding a connected globe',
   },
   {
     metric: '100+',
     title: 'courier options',
     copy: 'Flexible partners for every route',
-    art: 'partners',
-    icon: Truck,
+    image: '/assets/shipray-strength-couriers.jpg',
+    alt: 'Multiple delivery vehicle options compared through one dashboard',
   },
   {
     metric: '99.2%',
     title: 'platform uptime',
     copy: 'Reliable tools when teams need them',
-    art: 'uptime',
-    icon: BarChart3,
+    image: '/assets/shipray-strength-uptime.jpg',
+    alt: 'Always-on logistics monitoring dashboard with healthy server status',
   },
 ]
 
@@ -902,23 +902,15 @@ function CoreStrengths() {
         </div>
       </div>
       <div className="strength-track" ref={trackRef}>
-        {coreStrengths.map((item) => {
-          const ArtIcon = item.icon
-          return (
-            <article className="strength-card" key={item.metric}>
-              <h3><strong>{item.metric}</strong> {item.title}</h3>
-              <p>{item.copy}</p>
-              <div className={`strength-media strength-art strength-art-${item.art}`} aria-hidden="true">
-                <div className="strength-art-grid" />
-                <span className="strength-art-main"><ArtIcon /></span>
-                <span className="strength-art-node node-a"><PackageCheck /></span>
-                <span className="strength-art-node node-b"><Route /></span>
-                <span className="strength-art-node node-c"><CircleCheck /></span>
-                <div className="strength-art-route"><i /><i /><i /><i /></div>
-              </div>
-            </article>
-          )
-        })}
+        {coreStrengths.map((item) => (
+          <article className="strength-card" key={item.metric}>
+            <h3><strong>{item.metric}</strong> {item.title}</h3>
+            <p>{item.copy}</p>
+            <div className="strength-media">
+              <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   )
