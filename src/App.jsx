@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import {
   ArrowRight, BadgeIndianRupee, BarChart3, BookOpen, Box, Building2, Check,
-  ChevronDown, ChevronRight, CircleCheck, Clock3, Code2, Globe2, Headphones,
+  ChevronDown, ChevronLeft, ChevronRight, CircleCheck, Clock3, Code2, Globe2, Headphones,
   Instagram, Linkedin, LocateFixed, Mail, MapPin, Menu, PackageCheck, PackageSearch,
   Phone, Plane, PlugZap, RefreshCcw, Route, Ruler, Scale, Search, ShieldCheck,
   ShoppingBag, Sparkles, Store, Truck, Warehouse, X, Zap,
@@ -137,144 +137,202 @@ function Header() {
   }
 
   return (
-    <>
-      <div className="offer-bar">
-        <span>Launch offer: get <strong>20% off</strong> your first five shipments</span>
-        <Link to="/rate-calculator">Calculate now <ArrowRight size={14} /></Link>
-      </div>
-      <header className="site-nav" ref={headerRef}>
-        <div className="shell nav-inner">
-          <Link to="/" className="brand" aria-label="Shipray home">
-            <img src="/assets/shipray-logo.svg" alt="Shipray Logistics" />
-          </Link>
-          <nav className="desktop-links" aria-label="Main navigation">
-            <div
-              className="nav-dropdown-wrap"
-              onMouseEnter={() => setDesktopMenu('platform')}
-              onMouseLeave={() => setDesktopMenu(null)}
-            >
-              <button
-                className={`nav-trigger ${pathname.startsWith('/integrations') ? 'active' : ''}`}
-                type="button"
-                aria-expanded={desktopMenu === 'platform'}
-                aria-controls="platform-menu"
-                onClick={() => setDesktopMenu('platform')}
-              >
-                Platform <ChevronDown />
-              </button>
-              <div
-                id="platform-menu"
-                className={`nav-dropdown platform-dropdown ${desktopMenu === 'platform' ? 'open' : ''}`}
-              >
-                <Link className="dropdown-lead" to="/integrations">
-                  <span className="dropdown-lead-icon"><PlugZap /></span>
-                  <div>
-                    <small>PLATFORM</small>
-                    <strong>Integrations</strong>
-                    <p>Bring every order and delivery partner into one workflow.</p>
-                  </div>
-                  <ChevronRight className="lead-arrow" />
-                </Link>
-                <div className="dropdown-options">
-                  <span className="dropdown-label">Explore integrations</span>
-                  {platformItems.map(({ label, copy, to, icon: Icon }) => (
-                    <NavLink className="dropdown-option" key={to} to={to}>
-                      <span className="dropdown-option-icon"><Icon /></span>
-                      <span><strong>{label}</strong><small>{copy}</small></span>
-                      <ArrowRight className="option-arrow" />
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div
-              className="nav-dropdown-wrap"
-              onMouseEnter={() => setDesktopMenu('tools')}
-              onMouseLeave={() => setDesktopMenu(null)}
-            >
-              <button
-                className={`nav-trigger ${['/weight-calculator', '/rate-calculator'].includes(pathname) ? 'active' : ''}`}
-                type="button"
-                aria-expanded={desktopMenu === 'tools'}
-                aria-controls="tools-menu"
-                onClick={() => setDesktopMenu('tools')}
-              >
-                Tools <ChevronDown />
-              </button>
-              <div
-                id="tools-menu"
-                className={`nav-dropdown tools-dropdown ${desktopMenu === 'tools' ? 'open' : ''}`}
-              >
-                <div className="dropdown-heading">
-                  <span>FREE SHIPPING TOOLS</span>
-                  <strong>Plan every shipment with confidence.</strong>
-                </div>
-                <div className="tool-dropdown-grid">
-                  {toolItems.map(({ label, copy, to, icon: Icon }) => (
-                    <NavLink className="tool-dropdown-card" key={to} to={to}>
-                      <span className="dropdown-option-icon"><Icon /></span>
-                      <span><strong>{label}</strong><small>{copy}</small></span>
-                      <ArrowRight className="option-arrow" />
-                    </NavLink>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <NavLink to="/blogs">Blogs</NavLink>
-            <NavLink to="/tracking">Track Shipment</NavLink>
-          </nav>
-          <div className="nav-actions">
-            <Link className="button primary small" to="/rate-calculator">Calculate rate</Link>
+    <header className="site-nav" ref={headerRef}>
+      <div className="nav-inner">
+        <Link to="/" className="brand" aria-label="Shipray home">
+          <img src="/assets/shipray-logo.svg" alt="Shipray Logistics" />
+        </Link>
+        <nav className="desktop-links" aria-label="Main navigation">
+          <div
+            className="nav-dropdown-wrap"
+            onMouseEnter={() => setDesktopMenu('products')}
+            onMouseLeave={() => setDesktopMenu(null)}
+          >
             <button
-              className="menu-button"
-              onClick={() => setOpen(!open)}
-              aria-label="Toggle menu"
-              aria-expanded={open}
-            >
-              {open ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-        {open && (
-          <div className="mobile-menu">
-            <button
-              className="mobile-group-trigger"
+              className={`nav-trigger ${['/weight-calculator', '/rate-calculator'].includes(pathname) ? 'active' : ''}`}
               type="button"
-              onClick={() => toggleMobileGroup('platform')}
-              aria-expanded={mobileGroup === 'platform'}
+              aria-expanded={desktopMenu === 'products'}
+              aria-controls="products-menu"
+              onClick={() => setDesktopMenu('products')}
+            >
+              Products <ChevronDown />
+            </button>
+            <div
+              id="products-menu"
+              className={`nav-dropdown tools-dropdown products-dropdown ${desktopMenu === 'products' ? 'open' : ''}`}
+            >
+              <div className="dropdown-heading">
+                <span>SHIPRAY PRODUCTS</span>
+                <strong>Tools that simplify every shipment.</strong>
+              </div>
+              <div className="tool-dropdown-grid">
+                {toolItems.map(({ label, copy, to, icon: Icon }) => (
+                  <NavLink className="tool-dropdown-card" key={to} to={to}>
+                    <span className="dropdown-option-icon"><Icon /></span>
+                    <span><strong>{label}</strong><small>{copy}</small></span>
+                    <ArrowRight className="option-arrow" />
+                  </NavLink>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div
+            className="nav-dropdown-wrap"
+            onMouseEnter={() => setDesktopMenu('platform')}
+            onMouseLeave={() => setDesktopMenu(null)}
+          >
+            <button
+              className={`nav-trigger ${pathname.startsWith('/integrations') ? 'active' : ''}`}
+              type="button"
+              aria-expanded={desktopMenu === 'platform'}
+              aria-controls="platform-menu"
+              onClick={() => setDesktopMenu('platform')}
             >
               Platform <ChevronDown />
             </button>
-            {mobileGroup === 'platform' && (
-              <div className="mobile-submenu">
-                <span className="mobile-submenu-title">Integrations <ChevronRight /></span>
-                {platformItems.map(({ label, to, icon: Icon }) => (
-                  <NavLink key={to} to={to}><Icon /> {label}</NavLink>
-                ))}
-              </div>
-            )}
-            <button
-              className="mobile-group-trigger"
-              type="button"
-              onClick={() => toggleMobileGroup('tools')}
-              aria-expanded={mobileGroup === 'tools'}
+            <div
+              id="platform-menu"
+              className={`nav-dropdown platform-dropdown ${desktopMenu === 'platform' ? 'open' : ''}`}
             >
-              Tools <ChevronDown />
-            </button>
-            {mobileGroup === 'tools' && (
-              <div className="mobile-submenu mobile-tools">
-                {toolItems.map(({ label, to, icon: Icon }) => (
-                  <NavLink key={to} to={to}><Icon /> {label}</NavLink>
+              <Link className="dropdown-lead" to="/integrations">
+                <span className="dropdown-lead-icon"><PlugZap /></span>
+                <div>
+                  <small>PLATFORM</small>
+                  <strong>Integrations</strong>
+                  <p>Bring every order and delivery partner into one workflow.</p>
+                </div>
+                <ChevronRight className="lead-arrow" />
+              </Link>
+              <div className="dropdown-options">
+                <span className="dropdown-label">Explore integrations</span>
+                {platformItems.map(({ label, copy, to, icon: Icon }) => (
+                  <NavLink className="dropdown-option" key={to} to={to}>
+                    <span className="dropdown-option-icon"><Icon /></span>
+                    <span><strong>{label}</strong><small>{copy}</small></span>
+                    <ArrowRight className="option-arrow" />
+                  </NavLink>
                 ))}
               </div>
-            )}
-            <NavLink to="/blogs">Blogs</NavLink>
-            <NavLink to="/tracking">Track Shipment</NavLink>
-            <Link className="button primary" to="/rate-calculator" onClick={() => setOpen(false)}>Calculate rate</Link>
+            </div>
           </div>
-        )}
-      </header>
-    </>
+          <NavLink to="/rate-calculator">Pricing</NavLink>
+          <div
+            className="nav-dropdown-wrap"
+            onMouseEnter={() => setDesktopMenu('partners')}
+            onMouseLeave={() => setDesktopMenu(null)}
+          >
+            <button
+              className={`nav-trigger ${pathname === '/integrations/courier-partners' ? 'active' : ''}`}
+              type="button"
+              aria-expanded={desktopMenu === 'partners'}
+              aria-controls="partners-menu"
+              onClick={() => setDesktopMenu('partners')}
+            >
+              Partners <ChevronDown />
+            </button>
+            <div
+              id="partners-menu"
+              className={`nav-dropdown compact-dropdown partners-dropdown ${desktopMenu === 'partners' ? 'open' : ''}`}
+            >
+              <NavLink className="dropdown-option" to="/integrations/courier-partners">
+                <span className="dropdown-option-icon"><Truck /></span>
+                <span><strong>Courier Partners</strong><small>Explore the delivery network</small></span>
+                <ArrowRight className="option-arrow" />
+              </NavLink>
+              <NavLink className="dropdown-option" to="/integrations/sales-channels">
+                <span className="dropdown-option-icon"><Building2 /></span>
+                <span><strong>Channel Partners</strong><small>Connect your commerce stack</small></span>
+                <ArrowRight className="option-arrow" />
+              </NavLink>
+            </div>
+          </div>
+          <NavLink to="/tracking">Track Order</NavLink>
+          <div
+            className="nav-dropdown-wrap"
+            onMouseEnter={() => setDesktopMenu('resources')}
+            onMouseLeave={() => setDesktopMenu(null)}
+          >
+            <button
+              className={`nav-trigger ${pathname === '/blogs' ? 'active' : ''}`}
+              type="button"
+              aria-expanded={desktopMenu === 'resources'}
+              aria-controls="resources-menu"
+              onClick={() => setDesktopMenu('resources')}
+            >
+              Resources <ChevronDown />
+            </button>
+            <div
+              id="resources-menu"
+              className={`nav-dropdown compact-dropdown resources-dropdown ${desktopMenu === 'resources' ? 'open' : ''}`}
+            >
+              <NavLink className="dropdown-option" to="/blogs">
+                <span className="dropdown-option-icon"><BookOpen /></span>
+                <span><strong>Blogs</strong><small>Shipping guides and insights</small></span>
+                <ArrowRight className="option-arrow" />
+              </NavLink>
+              <NavLink className="dropdown-option" to="/weight-calculator">
+                <span className="dropdown-option-icon"><Scale /></span>
+                <span><strong>Weight Estimator</strong><small>Find chargeable parcel weight</small></span>
+                <ArrowRight className="option-arrow" />
+              </NavLink>
+            </div>
+          </div>
+        </nav>
+        <div className="nav-actions">
+          <Link className="login-button" to="/login">Log In</Link>
+          <button
+            className="menu-button"
+            onClick={() => setOpen(!open)}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
+      </div>
+      {open && (
+        <div className="mobile-menu">
+          <button className="mobile-group-trigger" type="button" onClick={() => toggleMobileGroup('products')} aria-expanded={mobileGroup === 'products'}>
+            Products <ChevronDown />
+          </button>
+          {mobileGroup === 'products' && (
+            <div className="mobile-submenu">
+              {toolItems.map(({ label, to, icon: Icon }) => <NavLink key={to} to={to}><Icon /> {label}</NavLink>)}
+            </div>
+          )}
+          <button className="mobile-group-trigger" type="button" onClick={() => toggleMobileGroup('platform')} aria-expanded={mobileGroup === 'platform'}>
+            Platform <ChevronDown />
+          </button>
+          {mobileGroup === 'platform' && (
+            <div className="mobile-submenu">
+              <span className="mobile-submenu-title">Integrations <ChevronRight /></span>
+              {platformItems.map(({ label, to, icon: Icon }) => <NavLink key={to} to={to}><Icon /> {label}</NavLink>)}
+            </div>
+          )}
+          <NavLink to="/rate-calculator">Pricing</NavLink>
+          <button className="mobile-group-trigger" type="button" onClick={() => toggleMobileGroup('partners')} aria-expanded={mobileGroup === 'partners'}>
+            Partners <ChevronDown />
+          </button>
+          {mobileGroup === 'partners' && (
+            <div className="mobile-submenu">
+              <NavLink to="/integrations/courier-partners"><Truck /> Courier Partners</NavLink>
+              <NavLink to="/integrations/sales-channels"><Building2 /> Channel Partners</NavLink>
+            </div>
+          )}
+          <NavLink to="/tracking">Track Order</NavLink>
+          <button className="mobile-group-trigger" type="button" onClick={() => toggleMobileGroup('resources')} aria-expanded={mobileGroup === 'resources'}>
+            Resources <ChevronDown />
+          </button>
+          {mobileGroup === 'resources' && (
+            <div className="mobile-submenu">
+              <NavLink to="/blogs"><BookOpen /> Blogs</NavLink>
+              <NavLink to="/weight-calculator"><Scale /> Weight Estimator</NavLink>
+            </div>
+          )}
+          <Link className="login-button mobile-login" to="/login">Log In</Link>
+        </div>
+      )}
+    </header>
   )
 }
 
@@ -475,8 +533,293 @@ console.log(shipment.awb);`}</pre></div>
   )
 }
 
+const demoProducts = [
+  {
+    tab: 'Smart Booking',
+    title: 'Book the right courier in minutes',
+    copy: 'Enter pickup, delivery and parcel details once. Shipray compares suitable delivery options and keeps the booking workflow clear from start to finish.',
+    image: '/assets/shipray-warehouse-operations.jpg',
+    imageAlt: 'Shipray warehouse team preparing ecommerce shipments',
+    to: '/rate-calculator',
+    cta: 'Try rate calculator',
+    tone: 'violet',
+  },
+  {
+    tab: 'Shipping',
+    title: 'Ship every order from one workspace',
+    copy: 'Move domestic parcels through a consistent process with chargeable-weight guidance, route-level estimates and organised shipment milestones.',
+    image: '/assets/shipray-hero-courier.jpg',
+    imageAlt: 'Courier team packing and processing customer orders',
+    to: '/weight-calculator',
+    cta: 'Estimate weight',
+    tone: 'amber',
+  },
+  {
+    tab: 'Live Tracking',
+    title: 'See delivery progress without the guesswork',
+    copy: 'Follow shipment events in one readable timeline and identify the latest courier scan before customers need to ask for an update.',
+    image: '/assets/shipray-tracking.png',
+    imageAlt: 'Shipray live shipment tracking interface',
+    to: '/tracking',
+    cta: 'Track shipment',
+    tone: 'cyan',
+  },
+]
+
+function LiveDemos() {
+  const [activeDemo, setActiveDemo] = useState(0)
+  const demo = demoProducts[activeDemo]
+  return (
+    <section className="live-demos">
+      <div className="demo-ambient" />
+      <div className="shell">
+        <div className="demo-heading">
+          <span>SHIPRAY PRODUCT EXPERIENCE</span>
+          <h2>Experience smarter shipping<br />through live tools</h2>
+        </div>
+        <div className="demo-tabs" role="tablist" aria-label="Shipray product demos">
+          {demoProducts.map((item, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeDemo === index}
+              className={activeDemo === index ? 'active' : ''}
+              onClick={() => setActiveDemo(index)}
+              key={item.tab}
+            >
+              {item.tab}
+            </button>
+          ))}
+        </div>
+        <article className={`demo-stage demo-${demo.tone}`} key={demo.tab}>
+          <div className="demo-copy">
+            <span className="demo-index">0{activeDemo + 1} / 03</span>
+            <h3>{demo.title}</h3>
+            <p>{demo.copy}</p>
+            <Link className="button primary" to={demo.to}>{demo.cta} <ArrowRight size={17} /></Link>
+          </div>
+          <div className="demo-media">
+            <img src={demo.image} alt={demo.imageAlt} />
+            <div className="demo-status">
+              <CircleCheck />
+              <span><small>Shipray workflow</small><strong>Ready to use</strong></span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  )
+}
+
+const coreStrengths = [
+  {
+    metric: '50K+',
+    title: 'growing businesses',
+    copy: 'Shipping with clearer operations',
+    image: '/assets/shipray-warehouse-operations.jpg',
+    alt: 'Warehouse operations supporting growing shipping businesses',
+  },
+  {
+    metric: '29,000+',
+    title: 'serviceable pin codes',
+    copy: 'Domestic reach across India',
+    image: '/assets/shipray-hero-courier.jpg',
+    alt: 'Courier team processing parcels for nationwide delivery',
+  },
+  {
+    metric: '220+',
+    title: 'countries and territories',
+    copy: 'Connected cross-border possibilities',
+    image: '/assets/shipray-3d-logistics-hero.png',
+    alt: 'Connected global Shipray logistics network',
+  },
+  {
+    metric: '100+',
+    title: 'courier options',
+    copy: 'Flexible partners for every route',
+    image: '/assets/shipray-tracking.png',
+    alt: 'Courier network and shipment tracking view',
+  },
+  {
+    metric: '99.2%',
+    title: 'platform uptime',
+    copy: 'Reliable tools when teams need them',
+    image: '/assets/shipray-rate-calculator.png',
+    alt: 'Shipray shipping rate calculation interface',
+  },
+]
+
+function CoreStrengths() {
+  const trackRef = useRef(null)
+  const move = (direction) => {
+    const card = trackRef.current?.querySelector('.strength-card')
+    if (!trackRef.current || !card) return
+    trackRef.current.scrollBy({ left: direction * (card.getBoundingClientRect().width + 28), behavior: 'smooth' })
+  }
+  return (
+    <section className="core-strengths">
+      <div className="strength-head">
+        <h2>Our Core Strengths</h2>
+        <div className="strength-controls">
+          <button type="button" onClick={() => move(-1)} aria-label="Previous strength"><ChevronLeft /></button>
+          <button type="button" onClick={() => move(1)} aria-label="Next strength"><ChevronRight /></button>
+        </div>
+      </div>
+      <div className="strength-track" ref={trackRef}>
+        {coreStrengths.map((item) => (
+          <article className="strength-card" key={item.metric}>
+            <h3><strong>{item.metric}</strong> {item.title}</h3>
+            <p>{item.copy}</p>
+            <div className="strength-media"><img src={item.image} alt={item.alt} /></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+const courierPartners = [
+  { name: 'XPRESSBEES', tone: 'orange' },
+  { name: 'DELHIVERY', tone: 'black' },
+  { name: 'amazon shipping', tone: 'amazon' },
+  { name: 'LOADSHARE', tone: 'indigo' },
+  { name: 'BLUE DART', tone: 'blue' },
+  { name: 'DTDC', tone: 'navy' },
+  { name: 'shadowfax', tone: 'coral' },
+  { name: 'ECOM EXPRESS', tone: 'plum' },
+  { name: 'DOTZOT', tone: 'steel' },
+  { name: 'KERRY INDEV', tone: 'royal' },
+  { name: 'BORZO', tone: 'electric' },
+  { name: 'eKart', tone: 'teal' },
+  { name: 'aramex', tone: 'red' },
+]
+
+const sellerStories = [
+  {
+    brand: 'Nayra Naturals',
+    mark: 'NAYRA',
+    quote: '“Our team now books, tracks and resolves delivery questions from one clear workflow.”',
+    copy: 'Shipray helped this fast-growing wellness brand replace scattered courier screens with a consistent dispatch process. The result is quicker handoffs and fewer status follow-ups.',
+    metric: '31%',
+    metricLabel: 'faster daily dispatch',
+    image: '/assets/shipray-warehouse-operations.jpg',
+    tone: 'violet',
+  },
+  {
+    brand: 'Urban Loom',
+    mark: 'UL',
+    quote: '“Route-level choices made our shipping costs easier to predict as order volume grew.”',
+    copy: 'With weight guidance and practical courier comparisons, Urban Loom can plan every parcel around speed, serviceability and cost without slowing down fulfilment.',
+    metric: '24%',
+    metricLabel: 'lower exception rate',
+    image: '/assets/shipray-hero-courier.jpg',
+    tone: 'amber',
+  },
+  {
+    brand: 'The Willow Co.',
+    mark: 'WILLOW',
+    quote: '“Customers receive clearer delivery updates and our support queue stays focused.”',
+    copy: 'A single milestone view gives the team the latest shipment context before a customer asks, while keeping post-purchase communication calm and consistent.',
+    metric: '42%',
+    metricLabel: 'fewer tracking queries',
+    image: '/assets/shipray-tracking.png',
+    tone: 'cyan',
+  },
+  {
+    brand: 'Rooted Earth',
+    mark: 'ROOTED',
+    quote: '“We can launch into new pin codes without rebuilding our fulfilment process.”',
+    copy: 'Shipray gives Rooted Earth a repeatable booking flow that supports wider reach while keeping parcel checks and route decisions easy for the operations team.',
+    metric: '18K+',
+    metricLabel: 'pin codes explored',
+    image: '/assets/shipray-3d-logistics-hero.png',
+    tone: 'lime',
+  },
+  {
+    brand: 'Atelier Nine',
+    mark: 'A9',
+    quote: '“The same small team now handles more orders with far better visibility.”',
+    copy: 'Organised shipment milestones and quick rate estimates let Atelier Nine spend less time reconciling tools and more time improving the customer experience.',
+    metric: '2.3×',
+    metricLabel: 'orders handled per day',
+    image: '/assets/shipray-rate-calculator.png',
+    tone: 'pink',
+  },
+]
+
+function SellerStories() {
+  const [activeStory, setActiveStory] = useState(0)
+  const story = sellerStories[activeStory]
+  const marqueePartners = [...courierPartners, ...courierPartners]
+  const reversePartners = [...courierPartners.slice(6), ...courierPartners.slice(0, 6), ...courierPartners]
+
+  return (
+    <section className="seller-stories">
+      <div className="partner-cloud" aria-label="Courier partners available through Shipray">
+        <div className="partner-row">
+          {marqueePartners.map((partner, index) => (
+            <div className={`partner-logo partner-${partner.tone}`} key={`top-${partner.name}-${index}`}>
+              <span>{partner.name}</span>
+            </div>
+          ))}
+        </div>
+        <div className="partner-row partner-row-reverse">
+          {reversePartners.map((partner, index) => (
+            <div className={`partner-logo partner-${partner.tone}`} key={`bottom-${partner.name}-${index}`}>
+              <span>{partner.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="shell seller-shell">
+        <span className="section-label">SELLER SUCCESS</span>
+        <h2>Stories from growing sellers</h2>
+        <div className="seller-tabs" role="tablist" aria-label="Seller stories">
+          {sellerStories.map((item, index) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeStory === index}
+              className={activeStory === index ? 'active' : ''}
+              onClick={() => setActiveStory(index)}
+              key={item.brand}
+            >
+              {item.brand}
+            </button>
+          ))}
+        </div>
+
+        <article className={`seller-story-card story-${story.tone}`} key={story.brand}>
+          <div className="seller-story-copy">
+            <span className="seller-mark">{story.mark}</span>
+            <blockquote>{story.quote}</blockquote>
+            <p>{story.copy}</p>
+            <div className="seller-result">
+              <strong>{story.metric}</strong>
+              <span>{story.metricLabel}</span>
+            </div>
+          </div>
+          <div className="seller-story-visual">
+            <img src={story.image} alt={`${story.brand} shipping workflow with Shipray`} />
+            <div className="story-status">
+              <CircleCheck />
+              <span><small>Shipray impact</small><strong>Operations moving smoothly</strong></span>
+            </div>
+            <div className="story-order-card">
+              <small>Today’s dispatch</small>
+              <strong>Ready for pickup</strong>
+              <span><i /> 148 orders processed</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  )
+}
+
 function Home() {
-  return <><Hero /><TrustRail /><RollingCards /><Solutions /><Stats /><BusinessTypes /><DeveloperBand /><FinalCta /></>
+  return <><Hero /><TrustRail /><RollingCards /><LiveDemos /><CoreStrengths /><SellerStories /><Solutions /><Stats /><BusinessTypes /><DeveloperBand /><FinalCta /></>
 }
 
 const pageData = {
