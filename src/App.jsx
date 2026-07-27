@@ -336,38 +336,148 @@ function Header() {
   )
 }
 
+const heroSlides = [
+  {
+    id: 'smart-shipping',
+    eyebrow: 'Built for ambitious businesses',
+    title: 'Ship smarter.',
+    highlight: 'Grow without limits.',
+    copy: 'One reliable platform to compare couriers, ship across India, track every order and keep customers coming back.',
+    primary: 'Calculate shipping rate',
+    primaryTo: '/rate-calculator',
+    secondary: 'Track an order',
+    secondaryTo: '/tracking',
+    secondaryIcon: LocateFixed,
+    note: 'No setup fee · No minimum commitment',
+    image: '/assets/shipray-3d-logistics-hero.png',
+    imageAlt: 'Shipray connected logistics network',
+    kind: 'network',
+    tone: 'violet',
+    firstCard: { icon: PackageCheck, label: 'Today’s pickups', value: '128 ready', badge: '+18%' },
+    secondCard: { icon: Truck, label: 'Delivery score', value: 'Excellent', badge: '96' },
+  },
+  {
+    id: 'domestic-reach',
+    eyebrow: 'Nationwide delivery, one workflow',
+    title: 'Reach every market.',
+    highlight: 'Keep every order close.',
+    copy: 'Plan domestic shipments with route-level courier choices and a clear workflow from pickup creation to final delivery.',
+    primary: 'Plan a shipment',
+    primaryTo: '/rate-calculator',
+    secondary: 'Explore couriers',
+    secondaryTo: '/integrations/courier-partners',
+    secondaryIcon: Route,
+    note: 'Flexible courier choice · Clear serviceability',
+    image: '/assets/shipray-hero-courier.jpg',
+    imageAlt: 'Shipray courier team handling domestic parcels',
+    kind: 'photo',
+    tone: 'amber',
+    firstCard: { icon: MapPin, label: 'Serviceable reach', value: '29,000+ pin codes', badge: 'Live' },
+    secondCard: { icon: Route, label: 'Route planning', value: 'Courier matched', badge: 'Fast' },
+  },
+  {
+    id: 'live-tracking',
+    eyebrow: 'Readable milestones for every parcel',
+    title: 'Every shipment.',
+    highlight: 'Clearly visible.',
+    copy: 'Follow the latest courier scan, spot delivery exceptions earlier and give customers useful progress without switching tools.',
+    primary: 'Track a shipment',
+    primaryTo: '/tracking',
+    secondary: 'See integrations',
+    secondaryTo: '/integrations',
+    secondaryIcon: Search,
+    note: 'Live milestones · Customer-ready updates',
+    image: '/assets/shipray-tracking.png',
+    imageAlt: 'Shipray live tracking interface',
+    kind: 'ui',
+    tone: 'cyan',
+    firstCard: { icon: LocateFixed, label: 'Latest milestone', value: 'Out for delivery', badge: 'Live' },
+    secondCard: { icon: CircleCheck, label: 'Shipment health', value: 'On schedule', badge: '98' },
+  },
+  {
+    id: 'rate-confidence',
+    eyebrow: 'Make every shipping decision count',
+    title: 'Know the cost.',
+    highlight: 'Choose with confidence.',
+    copy: 'Estimate route and parcel costs before booking, compare the details that matter and protect margins as order volume grows.',
+    primary: 'Estimate shipping cost',
+    primaryTo: '/rate-calculator',
+    secondary: 'Check weight',
+    secondaryTo: '/weight-calculator',
+    secondaryIcon: Scale,
+    note: 'Quick estimates · Practical weight guidance',
+    image: '/assets/shipray-rate-calculator.png',
+    imageAlt: 'Shipray shipping rate calculator interface',
+    kind: 'ui',
+    tone: 'pink',
+    firstCard: { icon: BadgeIndianRupee, label: 'Rate estimate', value: 'Ready to compare', badge: 'New' },
+    secondCard: { icon: Scale, label: 'Chargeable weight', value: 'Checked', badge: '100' },
+  },
+]
+
 function Hero() {
+  const [activeSlide, setActiveSlide] = useState(0)
+  const slide = heroSlides[activeSlide]
+  const SecondaryIcon = slide.secondaryIcon
+  const FirstCardIcon = slide.firstCard.icon
+  const SecondCardIcon = slide.secondCard.icon
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
+    const timer = window.setInterval(() => {
+      setActiveSlide(current => (current + 1) % heroSlides.length)
+    }, 5200)
+    return () => window.clearInterval(timer)
+  }, [])
+
+  const moveSlide = (direction) => {
+    setActiveSlide(current => (current + direction + heroSlides.length) % heroSlides.length)
+  }
+
   return (
-    <section className="hero">
+    <section className={`hero hero-tone-${slide.tone}`}>
       <div className="hero-glow one" />
       <div className="hero-glow two" />
-      <div className="shell hero-grid">
+      <div className="shell hero-grid hero-slide" key={slide.id}>
         <div className="hero-copy">
-          <div className="eyebrow"><Sparkles size={16} /> Built for ambitious businesses</div>
-          <h1>Ship smarter.<br />Grow <span>without limits.</span></h1>
-          <p>One reliable platform to compare couriers, ship across India, track every order and keep customers coming back.</p>
+          <div className="eyebrow"><Sparkles size={16} /> {slide.eyebrow}</div>
+          <h1>{slide.title}<br /><span>{slide.highlight}</span></h1>
+          <p>{slide.copy}</p>
           <div className="hero-actions">
-            <Link className="button primary" to="/rate-calculator">Calculate shipping rate <ArrowRight size={17} /></Link>
-            <Link className="button ghost" to="/tracking"><LocateFixed size={17} /> Track an order</Link>
+            <Link className="button primary" to={slide.primaryTo}>{slide.primary} <ArrowRight size={17} /></Link>
+            <Link className="button ghost" to={slide.secondaryTo}><SecondaryIcon size={17} /> {slide.secondary}</Link>
           </div>
-          <div className="hero-note"><CircleCheck size={18} /> No setup fee · No minimum commitment</div>
+          <div className="hero-note"><CircleCheck size={18} /> {slide.note}</div>
         </div>
-        <div className="hero-art">
+        <div className={`hero-art hero-art-${slide.kind}`}>
           <div className="hero-orbit" />
-          <img src="/assets/shipray-3d-logistics-hero.png" alt="Shipray connected logistics network" />
+          <img src={slide.image} alt={slide.imageAlt} />
           <div className="float-card pickup">
-            <span className="mini-icon"><PackageCheck size={20} /></span>
-            <div><small>Today’s pickups</small><strong>128 ready</strong></div>
-            <span className="positive">+18%</span>
+            <span className="mini-icon"><FirstCardIcon size={20} /></span>
+            <div><small>{slide.firstCard.label}</small><strong>{slide.firstCard.value}</strong></div>
+            <span className="positive">{slide.firstCard.badge}</span>
           </div>
           <div className="float-card delivery">
-            <span className="mini-icon lime"><Truck size={20} /></span>
-            <div><small>Delivery score</small><strong>Excellent</strong></div>
-            <span className="score">96</span>
+            <span className="mini-icon lime"><SecondCardIcon size={20} /></span>
+            <div><small>{slide.secondCard.label}</small><strong>{slide.secondCard.value}</strong></div>
+            <span className="score">{slide.secondCard.badge}</span>
           </div>
         </div>
       </div>
-      <div className="shell hero-pager" aria-hidden="true"><button>‹</button><span className="active" /><span /><span /><span /><button>›</button></div>
+      <div className="shell hero-pager" aria-label="Hero slides">
+        <button className="hero-arrow" type="button" onClick={() => moveSlide(-1)} aria-label="Previous slide"><ChevronLeft /></button>
+        {heroSlides.map((item, index) => (
+          <button
+            className={`hero-progress ${activeSlide === index ? 'active' : ''}`}
+            type="button"
+            onClick={() => setActiveSlide(index)}
+            aria-label={`Show ${item.title} ${item.highlight}`}
+            aria-current={activeSlide === index ? 'true' : undefined}
+            key={item.id}
+          />
+        ))}
+        <button className="hero-arrow" type="button" onClick={() => moveSlide(1)} aria-label="Next slide"><ChevronRight /></button>
+      </div>
     </section>
   )
 }
@@ -773,8 +883,7 @@ function SellerStories() {
       </div>
 
       <div className="shell seller-shell">
-        <span className="section-label">SELLER SUCCESS</span>
-        <h2>Stories from growing sellers</h2>
+        <h2>Voices of Our Sellers</h2>
         <div className="seller-tabs" role="tablist" aria-label="Seller stories">
           {sellerStories.map((item, index) => (
             <button
