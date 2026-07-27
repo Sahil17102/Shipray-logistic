@@ -2,18 +2,12 @@ services:
   - type: web
     name: shipray-logistic
     runtime: static
-    buildCommand: npm run build
-    staticPublishPath: ./dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./out
     envVars:
-      - key: API_BASE_URL
-        value: https://shipray-logisticbackend.onrender.com
-      - key: BACKEND_URL
-        value: https://shipray-logisticbackend.onrender.com
-      - key: FRONTEND_URL
+      - key: NEXT_PUBLIC_API_URL
+        value: https://shiplogsitic.onrender.com
+      - key: NEXT_PUBLIC_FRONTEND_URL
         value: https://shipray-logistic.onrender.com
     headers:
       - path: /*
