@@ -387,7 +387,7 @@ function ToolIntro({ eyebrow, icon: Icon, title, copy, image, imageAlt, bullets 
       <ul className="feature-list">
         {bullets.map(item => <li key={item}><Check /> {item}</li>)}
       </ul>
-      <div className="tool-image"><img src={image} alt={imageAlt} loading="eager" decoding="async" fetchPriority="high" /></div>
+      <div className="tool-image"><img src={image} alt={imageAlt} /></div>
     </div>
   )
 }
@@ -420,8 +420,8 @@ function WeightCalculator() {
           icon={Scale}
           title="Find your chargeable weight."
           copy="Carriers compare a parcel’s actual weight with its volumetric weight. Enter the packed dimensions to know which value your shipment will be billed on."
-          image="/assets/shipray-weight-calculator-3d.png"
-          imageAlt="3D parcel on a smart digital scale with glowing dimensional guides"
+          image="/assets/shipray-weight-calculator.png"
+          imageAlt="Parcel on a digital weighing scale with dimensional guides"
           bullets={['Domestic and international divisors', 'Volumetric weight calculated instantly', 'Clear chargeable-weight breakdown']}
         />
         <form className="calculator-card tool-card" onSubmit={calculate}>
@@ -475,8 +475,8 @@ function RateCalculator() {
           icon={BadgeIndianRupee}
           title="Estimate your shipping rate."
           copy="Compare an indicative cost by route, chargeable weight, delivery speed and payment mode before you book."
-          image="/assets/shipray-rate-calculator-3d.png"
-          imageAlt="3D parcel routing hub comparing van, aircraft and freight delivery choices"
+          image="/assets/shipray-rate-calculator.png"
+          imageAlt="Delivery van, parcels and route markers representing a shipping rate"
           bullets={['Route-aware indicative pricing', 'Surface and express estimates', 'Prepaid and COD calculations']}
         />
         <form className="calculator-card tool-card" onSubmit={calculate}>
@@ -524,7 +524,7 @@ function Tracking() {
           </form>
           <div className="tracking-assurance"><span><CircleCheck /> One clear timeline</span><span><CircleCheck /> Courier-wide visibility</span></div>
         </div>
-        <div className="tracking-art"><img src="/assets/shipray-tracking-3d.png" alt="3D delivery van following a glowing tracked route to a doorstep" loading="eager" decoding="async" fetchPriority="high" /></div>
+        <div className="tracking-art"><img src="/assets/shipray-tracking.png" alt="Smartphone, parcel and delivery van showing a shipment journey" /></div>
       </div>
       {searched && <div className="shell tracking-result live-result"><div className="track-head"><div><small>Shipment ID</small><strong>{awb.trim().toUpperCase()}</strong></div><span><Truck /> In transit</span></div><div className="shipment-meta"><div><small>Current location</small><b>Delhi sorting facility</b></div><div><small>Expected delivery</small><b>Tomorrow, by 8 PM</b></div><div><small>Service</small><b>Shipray Express</b></div></div><div className="timeline">{milestones.map((item, index) => <div className={index < 3 ? 'done' : ''} key={item}><i>{index < 3 ? <Check /> : index + 1}</i><span>{item}</span></div>)}</div><p>Preview status shown for this demo. Connect the live tracking API to display real courier events.</p></div>}
       <ToolSteps items={[['01', 'Enter your ID', 'Use the AWB or order ID shared at dispatch.'], ['02', 'Read the milestone', 'See the latest scan in a consistent timeline.'], ['03', 'Plan the next step', 'Know when to wait and when a shipment needs attention.']]} />
