@@ -1,7 +1,19 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+.next-*/
+dist/
+out/
+
+# Local environment files and secrets
 .env
 .env.*
 !.env.example
-node_modules/
-app
-app.exe
+
+# Logs and local tooling
+*.log
+*.tsbuildinfo
 .DS_Store
+Thumbs.db
