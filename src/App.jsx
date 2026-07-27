@@ -418,7 +418,7 @@ function Header() {
           </div>
         </nav>
         <div className="nav-actions">
-          <Link className="login-button" to="/login">Log In</Link>
+          <Link className="login-button" to="/login">Sign In</Link>
           <Link className="try-button" to="/rate-calculator">Try for Free</Link>
           <button
             className="menu-button"
@@ -475,7 +475,7 @@ function Header() {
             </div>
           )}
           <div className="mobile-auth-actions">
-            <Link className="login-button mobile-login" to="/login">Log In</Link>
+            <Link className="login-button mobile-login" to="/login">Sign In</Link>
             <Link className="try-button" to="/rate-calculator">Try for Free</Link>
           </div>
         </div>
