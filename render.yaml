@@ -3,7 +3,7 @@ services:
     name: shipray-logistic
     runtime: static
     buildCommand: npm ci && npm run build
-    staticPublishPath: ./out
+    staticPublishPath: ./dist
     envVars:
       - key: NEXT_PUBLIC_API_URL
         value: https://shiplogsitic.onrender.com
