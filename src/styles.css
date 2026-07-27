@@ -291,23 +291,10 @@ img { max-width: 100%; }
 .strength-card h3 { max-width: 360px; margin: 0; font-size: clamp(24px,2.15vw,31px); line-height: 1.28; letter-spacing: -1.2px; font-weight: 400; }
 .strength-card h3 strong { font-weight: 800; }
 .strength-card > p { margin: 8px 0 0; color: #77737b; font-size: 11px; }
-.strength-media { flex: 1; min-height: 0; margin: 32px -37px 0; overflow: hidden; background: #f5f3f8; }
-.strength-art { position:relative; isolation:isolate; background:linear-gradient(145deg,#f0ecff,#faf9ff 56%,#e5f8ff); }
-.strength-art::before { position:absolute; z-index:-1; width:260px; height:260px; right:-85px; bottom:-105px; border-radius:50%; background:rgba(105,77,239,.17); box-shadow:0 0 0 38px rgba(105,77,239,.07),0 0 0 76px rgba(105,77,239,.035); content:""; }
-.strength-art-grid { position:absolute; inset:0; opacity:.65; background-image:linear-gradient(rgba(102,83,156,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(102,83,156,.09) 1px,transparent 1px); background-size:42px 42px; mask-image:linear-gradient(to bottom,black,transparent 92%); }
-.strength-art-main { position:absolute; z-index:2; left:50%; top:50%; width:112px; height:112px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.92); border-radius:30px; color:#fff; background:linear-gradient(145deg,#8265f7,#4f35c9); box-shadow:0 25px 55px rgba(69,45,174,.28); transform:translate(-50%,-45%) rotate(-5deg); transition:transform .4s ease; }
-.strength-art-main svg { width:48px; height:48px; }
-.strength-card:hover .strength-art-main { transform:translate(-50%,-49%) rotate(0); }
-.strength-art-node { position:absolute; z-index:3; width:54px; height:54px; display:grid; place-items:center; border:1px solid rgba(255,255,255,.9); border-radius:16px; color:#6046db; background:rgba(255,255,255,.92); box-shadow:0 14px 32px rgba(43,31,82,.16); }
-.strength-art-node svg { width:23px; }
-.strength-art-node.node-a { left:12%; top:22%; }.strength-art-node.node-b { right:12%; top:18%; }.strength-art-node.node-c { right:17%; bottom:12%; color:#0c9b68; }
-.strength-art-route { position:absolute; left:13%; right:16%; bottom:22%; height:2px; background:linear-gradient(90deg,#795cf4,#31bfd7); transform:rotate(-8deg); }
-.strength-art-route i { position:absolute; top:50%; width:9px; height:9px; border:2px solid #fff; border-radius:50%; background:#7456ec; box-shadow:0 4px 11px rgba(55,37,130,.25); transform:translate(-50%,-50%); }
-.strength-art-route i:nth-child(1) { left:0; }.strength-art-route i:nth-child(2) { left:34%; }.strength-art-route i:nth-child(3) { left:68%; }.strength-art-route i:nth-child(4) { left:100%; background:#25b9d1; }
-.strength-art-reach { background:linear-gradient(145deg,#fff2d2,#fffaf1 55%,#e9e4ff); }.strength-art-reach .strength-art-main { background:linear-gradient(145deg,#ffac30,#ef6c48); }
-.strength-art-global { background:linear-gradient(145deg,#e5faff,#f8feff 52%,#e8e4ff); }.strength-art-global .strength-art-main { border-radius:50%; background:linear-gradient(145deg,#25bed7,#564be6); }
-.strength-art-partners { background:linear-gradient(145deg,#ece9ff,#fff 55%,#e7f7ef); }.strength-art-partners .strength-art-main { background:linear-gradient(145deg,#6850ec,#1f8fd0); }
-.strength-art-uptime { background:linear-gradient(145deg,#f4e8ff,#fff7fc 55%,#ffe8b9); }.strength-art-uptime .strength-art-main { background:linear-gradient(145deg,#c147ac,#7348e8); }
+.strength-media { position:relative; flex:1; min-height:0; margin:32px -37px 0; overflow:hidden; border-top:1px solid #ebe8f0; background:#edf0f6; }
+.strength-media::after { position:absolute; inset:0; background:linear-gradient(180deg,transparent 68%,rgba(19,16,30,.12)); content:""; pointer-events:none; }
+.strength-media img { width:100%; height:100%; display:block; object-fit:cover; object-position:center; transition:transform .55s cubic-bezier(.22,.7,.24,1),filter .55s ease; }
+.strength-card:hover .strength-media img { transform:scale(1.035); filter:saturate(1.06) contrast(1.02); }
 
 .seller-stories { padding: 0 0 120px; overflow: hidden; background: #f4f4f6; }
 .partner-cloud { position: relative; padding: 52px 0 44px; overflow: hidden; background-color: #f7f7f9; background-image: radial-gradient(circle,#d7d6dc 1.5px,transparent 1.6px); background-size: 54px 54px; }
